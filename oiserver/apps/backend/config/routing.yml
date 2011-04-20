@@ -1,0 +1,352 @@
+imageset:
+  class: sfPropelRouteCollection
+  options:
+    model:               Imageset
+    module:              imageset
+    prefix_path:         /:sf_culture/imageset
+    column:              id
+    with_wildcard_routes: true
+
+my_client_download_iso:
+  url:    /:sf_culture/my_client/download_iso
+  param: { module: my_client, action: download_iso }
+  requirements: { sf_culture: (?:eu|es|en) }
+my_client_save:
+  url:    /:sf_culture/my_client/save
+  param: { module: my_client, action: save }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+my_client_edit:
+  url:    /:sf_culture/my_client/edit
+  param: { module: my_client, action: edit }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+my_task:
+  class: sfPropelRouteCollection
+  options:
+    model:               MyTask
+    module:              my_task
+    prefix_path:         /:sf_culture/my_task
+    column:              id
+    with_wildcard_routes: true
+
+my_task_program:
+  url:    /:sf_culture/program
+  param: { module: my_task, action: program }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+my_task_program_save:
+  url:    /:sf_culture/program_save
+  param: { module: my_task, action: program_save }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+my_task_associate_save:
+  url:    /:sf_culture/associate_save
+  param: { module: my_task, action: associate_save }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+my_task_clear_confirm:
+  url:    /:sf_culture/clear_confirm
+  param: { module: my_task, action: clear_confirm }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+my_task_now_save:
+  url:    /:sf_culture/now_save
+  param: { module: my_task, action: now_save }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+trans_unit:
+  class: sfPropelRouteCollection
+  options:
+    model:               TransUnit
+    module:              trans_unit
+    prefix_path:         /:sf_culture/trans_unit
+    column:              msg_id
+    with_wildcard_routes: true
+
+catalogue:
+  class: sfPropelRouteCollection
+  options:
+    model:               Catalogue
+    module:              catalogue
+    prefix_path:         /:sf_culture/catalogue
+    column:              cat_id
+    with_wildcard_routes: true
+
+sf_guard_user:
+  class: sfPropelRouteCollection
+  options:
+    model:               sfGuardUser
+    module:              sfGuardUser
+    prefix_path:         /:sf_culture/sf_guard_user
+    column:              id
+    with_wildcard_routes: true
+
+sf_guard_group:
+  class: sfPropelRouteCollection
+  options:
+    model:               sfGuardGroup
+    module:              sfGuardGroup
+    prefix_path:         /:sf_culture/sf_guard_group
+    column:              id
+    with_wildcard_routes: true
+
+sf_guard_permission:
+  class: sfPropelRouteCollection
+  options:
+    model:               sfGuardPermission
+    module:              sfGuardPermission
+    prefix_path:         /:sf_culture/sf_guard_permission
+    column:              id
+    with_wildcard_routes: true
+
+pc:
+  class: sfPropelRouteCollection
+  options:
+    model:               Pc
+    module:              pc
+    prefix_path:         /:sf_culture/pc
+    column:              id
+    with_wildcard_routes: true
+    
+pcgroup:
+  class: sfPropelRouteCollection
+  options:
+    model:               Pcgroup
+    module:              pcgroup
+    prefix_path:         /:sf_culture/pcgroup
+    column:              id
+    with_wildcard_routes: true
+
+ajax:
+  url:   /:sf_culture/ajax/:action
+  requirements: { sf_culture: (?:eu|es|en) }
+  param: { module: ajax }
+
+oiimages:
+  class: sfPropelRouteCollection
+  options:
+    model:                Oiimages
+    module:               oiimages
+    prefix_path:          /:sf_culture/oiimages
+    column:               id
+    with_wildcard_routes: true
+
+
+home:
+  #url:   /
+  url:   /:sf_culture
+  param: { module: home, action: index }
+
+localized_home:
+  #url:   /:sf_culture/
+  url:   /:sf_culture
+  param: { module: home, action: index }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+vendor:
+  class: sfPropelRouteCollection
+  options:
+    model:                Vendor
+    module:               vendor
+    prefix_path:          /:sf_culture/vendor
+    column:               code/:type_id
+    with_wildcard_routes: true
+
+localized_vendor:
+  class: sfPropelRouteCollection
+  options:
+    model:                Vendor
+    module:               vendor
+    prefix_path:          /:sf_culture/vendor   
+    column:               code/:type_id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+type:
+  class: sfPropelRouteCollection
+  options:
+    model:                Type
+    module:               type
+    prefix_path:          /:sf_culture/type
+    column:               id
+    with_wildcard_routes: true
+
+localized_type:
+  class: sfPropelRouteCollection
+  options:
+    model:                Type
+    module:               type
+    prefix_path:          /:sf_culture/type
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+system:
+  class: sfPropelRouteCollection
+  options:
+    model:                System
+    module:               system
+    prefix_path:          /:sf_culture/system
+    column:               id
+    with_wildcard_routes: true
+
+localized_system:
+  class: sfPropelRouteCollection
+  options:
+    model:                System
+    module:               system
+    prefix_path:          /:sf_culture/system
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+subsys:
+  class: sfPropelRouteCollection
+  options:
+    model:                Subsys
+    module:               subsys
+    prefix_path:          /:sf_culture/subsys
+    column:               code/:device_id/:revision
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+localized_subsys:
+  class: sfPropelRouteCollection
+  options:
+    model:                Subsys
+    module:               subsys
+    prefix_path:          /:sf_culture/subsys
+    column:               code/:device_id/:revision
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+path:
+  class: sfPropelRouteCollection
+  options:
+    model:                Path
+    module:               path
+    prefix_path:          /:sf_culture/path
+    column:               id
+    with_wildcard_routes: true
+
+localized_path:
+  class: sfPropelRouteCollection
+  options:
+    model:                Path
+    module:               path
+    prefix_path:          /:sf_culture/path
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+pack:
+  class: sfPropelRouteCollection
+  options:
+    model:                Pack
+    module:               pack
+    prefix_path:          /:sf_culture/pack
+    column:               id
+    with_wildcard_routes: true
+
+localized_pack:
+  class: sfPropelRouteCollection
+  options:
+    model:                Pack
+    module:               pack
+    prefix_path:          /:sf_culture/pack
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+driver:
+  class: sfPropelRouteCollection
+  options:
+    model:                Driver
+    module:               driver
+    prefix_path:          /:sf_culture/driver
+    column:               id
+    with_wildcard_routes: true
+
+localized_driver:
+  class: sfPropelRouteCollection
+  options:
+    model:                Driver
+    module:               driver
+    prefix_path:          /:sf_culture/driver
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+device:
+  class: sfPropelRouteCollection
+  options:
+    model:                Device
+    module:               device
+    prefix_path:          /:sf_culture/device
+    column:               id
+    with_wildcard_routes: true
+
+localized_device:
+  class: sfPropelRouteCollection
+  options:
+    model:                Device
+    module:               device
+    prefix_path:          /:sf_culture/device
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+#sfGuardPlugin
+sf_guard_signin:
+  url:    /:sf_culture/login
+  param: { module: sfGuardAuth, action: signin }
+  requirements: { sf_culture: (?:eu|es|en) } 
+
+sf_guard_signout:
+  url:    /:sf_culture/logout
+  param: { module: sfGuardAuth, action: signout }
+  requirements: { sf_culture: (?:eu|es|en) } 
+
+sf_guard_password:
+  url:    /:sf_culture/request_password
+  param: { module: sfGuardAuth, action: password }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+# default rules
+
+homepage:
+  url:   /:sf_culture
+  param: {sf_culture:eu, module: home, action: index }
+
+
+localized_homepage:
+  #url:   /:sf_culture/
+  url:   /:sf_culture
+  param: { module: home, action: index }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+default_index:
+  #url:   /:module
+  url:   /:sf_culture/:module
+  param: { action: index }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+localized_default_index:
+  url:   /:sf_culture/:module
+  param: { action: index }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+#kam
+#vendor_view:
+#  url:   /:sf_culture/:module/:cod1/:cod2/:action/*  # DON'T FORGET "/*"!!
+#  param: { action: view, module: vendor }
+#  requirements: { sf_culture: (?:eu|es|en) }
+
+default:
+  url:   /:sf_culture/:module/:action/*
+  requirements: { sf_culture: (?:eu|es|en) }
+
+localized_default:
+  url:   /:sf_culture/:module/:action/*
+  requirements: { sf_culture: (?:eu|es|en) }

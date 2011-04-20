@@ -1,0 +1,19 @@
+dev:
+  propel:
+    param:
+      classname: DebugPDO
+test:
+  propel:
+    param:
+      classname: DebugPDO
+all:
+  propel:
+    class: sfPropelDatabase
+    param:
+      classname: PropelPDO
+      dsn: 'mysql:dbname=openirudiDB;host=localhost;unix_socket=/var/run/mysqld/mysqld.sock'
+      username: openirudi
+      password: openirudi
+      encoding: utf8
+      persistent: true
+      pooling: true

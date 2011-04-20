@@ -1,0 +1,34 @@
+# default values
+all:
+  hardware:
+    types:              [pci,usb,hid,acpi,scsi,pcmcia,hdaudio]
+  command:
+    get.usb.ids:        'cat %SF_ROOT_DIR%/data/vids/usb.txt;'
+    get.pci.ids:        'cat %SF_ROOT_DIR%/data/vids/pci.txt;'
+    wget.usb.ids:       'wget -O %SF_ROOT_DIR%/data/vids/usb.ids http://www.linux-usb.org/usb.ids; cat %SF_ROOT_DIR%/data/vids/usb.ids; rm %SF_ROOT_DIR%/data/vids/usb.ids;'
+    wget1.pci.ids:      'wget -O %SF_ROOT_DIR%/data/vids/pci1.ids http://www.pcidatabase.com/reports.php?type=tab-delimeted; cat %SF_ROOT_DIR%/data/vids/pci1.ids; rm %SF_ROOT_DIR%/data/vids/pci1.ids;'
+    wget2.pci.ids:      'wget -O %SF_ROOT_DIR%/data/vids/pci2.ids http://pciids.sourceforge.net/v2.2/pci.ids; cat %SF_ROOT_DIR%/data/vids/pci2.ids; rm %SF_ROOT_DIR%/data/vids/pci2.ids;'
+    diff.usb.ids:       'diff %SF_ROOT_DIR%/data/vids/usb.old %SF_ROOT_DIR%/data/vids/usb.txt > %SF_ROOT_DIR%/data/vids/usb.diff; cat %SF_ROOT_DIR%/data/vids/usb.diff;'
+    diff.pci.ids:       'diff %SF_ROOT_DIR%/data/vids/pci.old %SF_ROOT_DIR%/data/vids/pci.txt > %SF_ROOT_DIR%/data/vids/pci.diff; cat %SF_ROOT_DIR%/data/vids/pci.diff;'
+  const:
+    separator:          ';'
+    root_dir:           '%SF_ROOT_DIR%'
+    isopath:            '/web/func/root'
+    clientpath:         '/client'
+    packs_dir_name:     '../DriverPacks'
+    packs_root:         '%SF_ROOT_DIR%/../DriverPacks'
+    temp_path:          '/tmp'
+    pwd:                'sjdlaksjda90qwñaslkdSS'
+    lastClient:         'http://openirudi.googlecode.com/files/update.txt'
+  sfLanguageSwitch:
+    #flagPath:  /sfLanguageSwitch/images/flag   # optional if you wanna change the path
+    availableLanguages:
+      eu:
+        title: Euskara
+        #image: /sfLanguageSwitch/images/flag/eu.png   # optional if you wanna change the flag
+      es:
+        title: Castellano
+        #image: /sfLanguageSwitch/images/flag/es.png   # optional if you wanna change the flag
+      en:
+        title: English
+        #image: /sfLanguageSwitch/images/flag/en.png   # optional if you wanna change the flag

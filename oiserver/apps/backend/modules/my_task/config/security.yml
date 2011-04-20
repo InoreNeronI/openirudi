@@ -1,0 +1,11 @@
+all:
+  is_secure:    on
+
+view:
+  is_secure:    on
+
+edit:
+  is_secure:    on
+
+delete:
+  is_secure:    on

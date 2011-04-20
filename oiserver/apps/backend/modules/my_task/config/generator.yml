@@ -1,0 +1,32 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           MyTask
+    theme:                 adminWithShow
+    non_verbose_templates: true
+    with_show:             true
+    singular:              ~
+    plural:                ~
+    route_prefix:          my_task
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+
+
+
+        batch_actions: {}
+        display: [id,day,hour,associate,oiimages,pc,partition]
+
+        #gaur
+        display: [id,day,hour,associate,oiimages,pc,partition,imageset,disk,is_boot]
+      filter:  ~
+      form:    ~
+
+      form:    
+        display: [day,hour,associate,pc_id,is_boot,is_imageset,oiimages_id,partition,imageset_id,disk] 
+      edit:    ~
+      new:     ~
+      show:    ~

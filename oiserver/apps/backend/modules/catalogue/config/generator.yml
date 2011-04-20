@@ -1,0 +1,26 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Catalogue
+    theme:                 adminWithShow
+    non_verbose_templates: true
+    with_show:             true
+    singular:              ~
+    plural:                ~
+    route_prefix:          catalogue
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        batch_actions: {}
+        object_actions:          
+          _show: {credentials: [[catalogue_show,catalogue_edit]]} #OR
+          _edit: {credentials: [catalogue_edit]}
+          _delete: {credentials: [catalogue_delete]}
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
+      show:    ~

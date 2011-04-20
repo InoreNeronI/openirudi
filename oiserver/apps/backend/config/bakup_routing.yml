@@ -1,0 +1,202 @@
+oiimages:
+  class: sfPropelRouteCollection
+  options:
+    model:                Oiimages
+    module:               oiimages
+    prefix_path:          /:sf_culture/oiimages
+    column:               id
+    with_wildcard_routes: true
+
+
+home:
+  url:   /
+  param: { module: home, action: index }
+
+localized_home:
+  url:   /:sf_culture/
+  param: { module: home, action: index }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+vendor:
+  class: sfPropelRouteCollection
+  options:
+    model:                Vendor
+    module:               vendor
+    prefix_path:          vendor
+    column:               code
+    with_wildcard_routes: true
+
+localized_vendor:
+  class: sfPropelRouteCollection
+  options:
+    model:                Vendor
+    module:               vendor
+    prefix_path:          /:sf_culture/vendor
+    column:               code
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+type:
+  class: sfPropelRouteCollection
+  options:
+    model:                Type
+    module:               type
+    prefix_path:          type
+    column:               id
+    with_wildcard_routes: true
+
+localized_type:
+  class: sfPropelRouteCollection
+  options:
+    model:                Type
+    module:               type
+    prefix_path:          /:sf_culture/type
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+system:
+  class: sfPropelRouteCollection
+  options:
+    model:                System
+    module:               system
+    prefix_path:          system
+    column:               id
+    with_wildcard_routes: true
+
+localized_system:
+  class: sfPropelRouteCollection
+  options:
+    model:                System
+    module:               system
+    prefix_path:          /:sf_culture/system
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+subsys:
+  class: sfPropelRouteCollection
+  options:
+    model:                Subsys
+    module:               subsys
+    prefix_path:          subsys
+    column:               code
+    with_wildcard_routes: true
+
+localized_subsys:
+  class: sfPropelRouteCollection
+  options:
+    model:                Subsys
+    module:               subsys
+    prefix_path:          /:sf_culture/subsys
+    column:               code
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+path:
+  class: sfPropelRouteCollection
+  options:
+    model:                Path
+    module:               path
+    prefix_path:          path
+    column:               id
+    with_wildcard_routes: true
+
+localized_path:
+  class: sfPropelRouteCollection
+  options:
+    model:                Path
+    module:               path
+    prefix_path:          /:sf_culture/path
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+pack:
+  class: sfPropelRouteCollection
+  options:
+    model:                Pack
+    module:               pack
+    prefix_path:          pack
+    column:               id
+    with_wildcard_routes: true
+
+localized_pack:
+  class: sfPropelRouteCollection
+  options:
+    model:                Pack
+    module:               pack
+    prefix_path:          /:sf_culture/pack
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+driver:
+  class: sfPropelRouteCollection
+  options:
+    model:                Driver
+    module:               driver
+    prefix_path:          driver
+    column:               id
+    with_wildcard_routes: true
+
+localized_driver:
+  class: sfPropelRouteCollection
+  options:
+    model:                Driver
+    module:               driver
+    prefix_path:          /:sf_culture/driver
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+device:
+  class: sfPropelRouteCollection
+  options:
+    model:                Device
+    module:               device
+    prefix_path:          device
+    column:               id
+    with_wildcard_routes: true
+
+localized_device:
+  class: sfPropelRouteCollection
+  options:
+    model:                Device
+    module:               device
+    prefix_path:          /:sf_culture/device
+    column:               id
+    with_wildcard_routes: true
+  requirements: { sf_culture: (?:eu|es|en) }
+
+# default rules
+
+homepage:
+  url:   /
+  param: { module: home, action: index }
+
+localized_homepage:
+  url:   /:sf_culture/
+  param: { module: home, action: index }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+localized_default_index:
+  url:   /:sf_culture/:module
+  param: { action: index }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+vendor_view:
+  url:   /:sf_culture/:module/:cod1/:cod2/:action/*  # DON'T FORGET "/*"!!
+  param: { action: view, module: vendor }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+default:
+  url:   /:sf_culture/:module/:action/*
+
+localized_default:
+  url:   /:sf_culture/:module/:action/*
+  requirements: { sf_culture: (?:eu|es|en) }

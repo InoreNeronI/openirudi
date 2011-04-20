@@ -1,0 +1,9 @@
+-e kbdmap es.kbd
+label openirudi
+	kernel /boot/bzImage
+	append initrd=/boot/rootfs.gz rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root autologin server=192.168.110.51 user=admin password=21232f297a57a5a743894a0e4a801fc3 type=dhcp ip= netmask= gateway= dns1= dns2=
+
+implicit 0
+prompt 1
+timeout 2
+default openirudi

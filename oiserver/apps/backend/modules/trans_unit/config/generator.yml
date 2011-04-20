@@ -1,0 +1,27 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           TransUnit
+    theme:                 adminWithShow
+    non_verbose_templates: true
+    with_show:             true
+    singular:              ~
+    plural:                ~
+    route_prefix:          trans_unit
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [msg_id,cat_id,source,target]    
+        batch_actions: {}
+        object_actions:          
+          _show: {credentials: [[trans_unit_show,trans_unit_edit]]} #OR
+          _edit: {credentials: [trans_unit_edit]}
+          _delete: {credentials: [trans_unit_delete]}
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
+      show:    ~

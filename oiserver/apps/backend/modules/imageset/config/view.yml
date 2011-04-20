@@ -1,0 +1,4 @@
+all:
+  stylesheets:    [jquery-ui.css]
+
+  javascripts:    [jquery.min.js,jquery-ui.min.js]

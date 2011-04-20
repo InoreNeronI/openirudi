@@ -1,0 +1,21 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Path
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          path
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~ 
+        #display: [path,driver_id,type_id,vendor_id,device_id]      
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

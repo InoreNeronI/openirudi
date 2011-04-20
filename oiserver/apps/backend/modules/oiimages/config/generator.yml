@@ -1,0 +1,23 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Oiimages
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          oiimages
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        #display: [id,ref,name,so,created_at,partition_size,partition_type,filesystem_size,filesystem_type]
+        #display: [id,ref,name,so,created_at,partition_size,filesystem_size]
+        display: [id,ref,name,os,uuid,created_at,partition_size,filesystem_size]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

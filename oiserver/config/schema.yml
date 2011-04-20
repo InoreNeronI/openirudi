@@ -1,0 +1,143 @@
+propel:
+  catalogue:
+    _attributes   { phpName: Catalogue }
+    cat_id: { type: integer, size: 11, required: true, autoIncrement: true, primaryKey: true }
+    name: { type: varchar, size: 100, required: true, default: '' }
+    source_lang: { type: varchar, size: 100, required: false, default: '' }
+    target_lang: { type: varchar, size: 100, required: false, default: '' }
+    date_created: { type: timestamp }
+    date_modified: { type: timestamp }
+    author: { type: varchar, size: 255, required: false, default: '' }
+
+  trans_unit:
+    _attributes   { phpName: TransUnit }
+    msg_id: { type: integer, size: 11, required: true, autoIncrement: true, primaryKey: true }
+    cat_id: { type: integer, size: 11, required: true, default: 1, foreignTable: catalogue, foreignReference: cat_id }
+    id: { type:varchar, size:255 }
+    source: { type: longvarchar, required: true }
+    target: { type: longvarchar, required: false }
+    comments: { type: longvarchar }
+    date_added: { type: timestamp }
+    date_modified: { type: timestamp }
+    author: { type: varchar, size: 255, required: false, default: ''}
+    translated: { type: boolean, required: false, default: false }
+
+  type:
+    _attributes   { phpName: Type }
+    id:           { type: smallint, primaryKey: true, autoIncrement: true }
+    type:         { type: varchar(10), required: true }
+
+  driver:
+    _attributes:  { phpName: Driver }
+    id:
+    type_id:      { type: smallint, foreignTable: type, foreignReference: id, onDelete: cascade, required: true }
+    vendor_id:    { type: varchar(4), foreignTable: vendor, foreignReference: code, onDelete: cascade, required: true }
+    device_id:    { type: varchar(4), foreignTable: device, foreignReference: code, onDelete: cascade, required: true }
+    class_type:   { type: varchar(100) }
+    name:         { type: longvarchar }
+    date:         { type: date }
+    string:       { type: varchar(255), required: true }
+    url:          { type: varchar(255) }
+    created_at:
+    _uniques:
+      u_driver:   [string]
+
+  vendor:
+    _attributes:  { phpName: Vendor }
+    code:         { type: varchar(4), primaryKey: true }
+    type_id:      { type: smallint, primaryKey: true, foreignTable: type, foreignReference: id, onDelete: cascade }
+    name:         { type: varchar(255) }
+
+  device:
+    _attributes:  { phpName: Device }
+    id:
+    code:         { type: varchar(4), required: true }
+    vendor_id:    { type: varchar(4), required: true, foreignTable: vendor, foreignReference: code, onDelete: cascade }
+    type_id:      { type: smallint, required: true, foreignTable: type, foreignReference: id, onDelete: cascade }
+    name:         { type: longvarchar }
+    #_uniques:
+    #  u_device:   [code, vendor_id, type_id]
+
+  subsys:
+    _attributes:  { phpName: Subsys }
+    code:         { type: varchar(8), primaryKey: true }
+    device_id:    { type: integer, primaryKey: true, foreignTable: device, foreignReference: id, onDelete: cascade }
+    revision:     { type: varchar(2), primaryKey: true, default: '00' }
+    name:         { type: longvarchar }
+
+  system:
+    _attributes:  { phpName: System }
+    id:
+    driver_id:    { type: integer, foreignTable: driver, foreignReference: id, onDelete: cascade, required: true }
+    name:         { type: longvarchar }
+
+  path:
+    _attributes:  { phpName: Path }
+    id:
+    driver_id:    { type: integer, foreignTable: driver, foreignReference: id, onDelete: cascade, required: true }
+    path:         { type: longvarchar }
+
+  pack:
+    _attributes:  { phpName: Pack }
+    id:
+    path_id:      { type: integer, foreignTable: path, foreignReference: id, onDelete: cascade, required: true }
+    name:         { type: longvarchar }
+    version:      { type: varchar(10) }
+    release_date: { type: timestamp }
+
+  oiimages:
+    id:
+    ref: { type: varchar,size:50 }
+    name: { type: varchar,size:50 }
+    description:  { type: longvarchar }
+    os: { type: varchar,size:50 }
+    uuid: { type: varchar,size:50 }
+    created_at:
+    partition_size: {type:integer,size:11}
+    partition_type: {type:tinyint,size:4,required:true}
+    filesystem_size: {type:integer,size:11}
+    filesystem_type: {type:varchar,size:50,required:true}
+    path: { type: varchar,size:250 }
+
+  pc:
+    id:
+    mac: { type: varchar,size:255 }
+    hddid: { type: varchar,size:255 }
+    name: { type: varchar,size:255 ,required:true}
+    ip: { type: varchar,size:20 }
+    netmask: { type: varchar,size:20 }
+    gateway: { type: varchar,size:20 }
+    #dns-ak 255 luzera dauka serializatua dns bat baino gehiago egon daitekeelako
+    dns: {type: varchar,size:255}
+    pcgroup_id:
+    partitions: {type:longvarchar}
+
+  pcgroup:
+    id:
+    name: { type: varchar,size:255 ,required:true}
+
+  my_task:
+    id:
+    day: {type:date}
+    hour: {type:time}
+    associate: {type: boolean,default: false }
+    oiimages_id:
+    partition: { type: varchar,size:20 }
+    pc_id:
+    is_imageset: { type: boolean, required: false, default: false }
+    imageset_id:
+    is_boot: { type: boolean, required: false, default: false }
+    disk: { type: varchar,size:20 }
+
+  imageset:
+   id:
+   name: { type: varchar,size:255 ,required:true}
+
+  asign_imageset:
+   id:
+   name: { type: varchar,size:255 ,required:true}
+   imageset_id:
+   oiimages_id:
+   size: {type: float,size:11}
+   position: {type: integer,size:11}
+   color: { type: varchar,size:10}

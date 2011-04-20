@@ -1,0 +1,220 @@
+17958,18176d17957
+< #*064e*d101*SuYin Web Cam
+< #*067b*2305*PL-2305 USB-to-Printer Bridge Controller
+< ##*1000*0072*10281f1c*6Gbps SAS HBA Adapter
+< ##*1000*0072*10281f1d*PERC H200 Adapter
+< ##*1000*0072*10281f1e*PERC H200 Integrated
+< ##*1000*0072*10281f1f*PERC H200 Modular
+< #*1000*0080*SAS2208 PCI-Express Fusion-MPT SAS-2
+< #*1000*0081*SAS2208 PCI-Express Fusion-MPT SAS-2
+< #*1000*0082*SAS2208 PCI-Express Fusion-MPT SAS-2
+< #*1000*0083*SAS2208 PCI-Express Fusion-MPT SAS-2
+< #*1000*0084*SAS2208 PCI-Express Fusion-MPT SAS-2
+< #*1000*0085*SAS2208 PCI-Express Fusion-MPT SAS-2
+< #*1000*0086*SAS2208 PCI-Express Fusion-MPT SAS-2
+< #*1000*0087*SAS2208 PCI-Express Fusion-MPT SAS-2
+< ##*1002*9480*103c3628*ATI Mobility Radeon HD 4650 [dv6-1190en]
+< ##*1002*9495*14580028*HD4650
+< ##*1002*9501*174be620*Sapphire Radeon HD 3870 PCIe 2.0
+< ##*1002*9610*1458d000*GA-MA78GM-S2H Motherboard
+< #*1002*9710*RS880GT [Radeon HD 4200]
+< #*1002*9712*M880G [Mobility Radeon HD 4200]
+< #*1002*9713*M860G [Mobility Radeon 4100]
+< ##*1002*aa38*103c3628*ATI RV710/730 [dv6-1190en]
+< #*1014*033d*PCI-E IPR SAS Adapter (FPGA)
+< ##*1014*033d*1014033c*PCIe2 1.8GB Cache 6Gb SAS RAID Adapter Tri-port (57B5)
+< ##*1014*033d*10140356*PCIe2 1.8GB Cache 6Gb SAS RAID & SSD Adapter (574D)
+< ##*1014*033d*1014035f*PCIe2 6Gb SAS Adapter Quad-port (57B2)
+< #*1014*034a*PCI-E IPR SAS Adapter (ASIC)
+< ##*1014*034a*1014033b*PCIe2 6Gb SAS RAID Adapter Quad-port (57B4)
+< ##*1014*034a*10140355*PCIe2 3.6GB Cache 6Gb SAS RAID Adapter Quad-port (57B1)
+< ##*1014*034a*10140357*PCIe2 6Gb SAS Adapter Quad-port (57C6)
+< ##*1014*034a*1014035d*PCIe2 3.6GB Cache 6Gb SAS RAID & SSD Adapter (575D)
+< ##*1014*034a*1014035e*PCIe2 3.6GB Cache 6Gb SAS RAID Adapter Quad-port (57CE)
+< #*1022*7463*AMD-8111 USB EHCI
+< ##*102b*0527*102b0870*MED2mp-DVI
+< ##*102b*0527*102b0880*P-256 Edge Overlap Controller
+< ##*102b*0528*102b1040*MED2mp-DVI
+< ##*102b*0528*102b1050*Sono S20
+< ##*102b*0528*102b1060*PJ-30L
+< ##*102b*0528*102b1070*PJ-40L
+< ##*102b*0528*102b1421*MED5mp
+< ##*102b*0528*102b1431*MED3mp-DVI
+< ##*102b*0528*102b1451*MED5mp-DVI
+< ##*102b*0528*102b1491*MED2mp-DVI
+< ##*102b*0528*102b14b1*MED3mp-DVI
+< ##*102b*0528*102b14c1*MED5mp-DVI
+< ##*102b*0528*102b14f1*Parhelia Precision SGT
+< ##*102b*0528*102b1501*ATC-4MP
+< ##*102b*0528*102b1511*ATC-4MP
+< ##*102b*0528*102b1521*TheatreVUE T30
+< ##*102b*0528*102b1531*TheatreVUE T20
+< ##*102b*0528*102b1541*MED2mp-DVI
+< ##*102b*0528*102b1551*MED3mp-DVI
+< ##*102b*0528*102b1561*MED5mp-DVI
+< ##*102b*0528*102b1571*Parhelia DL256 PCI
+< ##*102b*0528*102b1591*Parhelia Precision SDT
+< ##*102b*0528*102b15a1*MED4mp-DVI
+< ##*102b*0528*102b2011*Parhelia HR256
+< ##*102b*0528*102b2061*PJ-40LP
+< ##*102b*0528*102b2081*EWS Quad
+< ##*102b*0528*102b2411*PPX-OUT8
+< ##*102b*0528*102b2421*VPX-OUT8
+< ##*102b*0528*102b2441*PPX-OUT4
+< ##*102b*0528*102b2451*VPX-OUT4
+< ##*102b*0528*102b2491*LPX-OUT4
+< ##*102b*0540*102b20c0*Xenia
+< ##*102b*0540*102b20c1*Xenia Pro
+< ##*102b*0540*102b2200*VDA1164 Output Board
+< ##*102b*0540*102b2280*M9188 ATX PCIe x16
+< ##*102b*0540*102b22c0*M9128 LP PCIe x16
+< ##*102b*2537*102b1850*RAD2mp
+< ##*102b*2537*102b1860*RAD3mp
+< ##*102b*2537*102b1880*Sono S10
+< ##*102b*2537*102b2821*Millenium P650 Low-profile PCI
+< ##*102b*2537*102b2841*RAD PCI
+< ##*102b*2537*102b2851*Spectrum PCI
+< ##*102b*2537*102b2871*EpicA TC2
+< ##*102b*2537*102b2c21*QID LP PCI LW
+< ##*102b*2537*102b2c31*QID LP PCI
+< ##*102b*2537*102b2c41*EpicA TC4
+< ##*102b*2537*102b3001*Extio F1400
+< ##*102b*2537*102b3011*Extio F1220
+< ##*102b*2537*102b3041*RG-200DL
+< ##*102b*2537*102b3051*RG-400SL
+< ##*102b*2537*102b3061*Extio F1420
+< ##*102b*2537*102b3081*Extio F1240
+< ##*102b*2538*102b0847*RAD PCIe
+< ##*102b*2538*102b0987*ATC PCIe 4MP
+< ##*102b*2538*102b1801*Millenium P650 PCIe x1
+< ##*102b*2538*102b3087*Aurora VX3mp
+< ##*102b*2538*102b30c7*QID LP PCIe
+< ##*102b*2539*102b0040*Millenium P690 PCIe x16
+< ##*102b*2539*102b0042*ONYX
+< ##*102b*2539*102b0043*SPECTRA
+< ##*102b*2539*102b0080*Millenium P690 Plus LP PCIe x16
+< ##*102b*2539*102b0081*Millenium P690 LP PCIe x16
+< ##*102b*2539*102b0082*RAD LPX PCIe x16
+< ##*102b*2539*102b00c0*Millenium P690 Plus LP PCI
+< ##*102b*2539*102b00c2*Millenium P690 LP PCI
+< ##*102b*2539*102b00c3*RAD LPX PCI
+< ##*102b*2539*102b0101*Millenium P690 PCI
+< ##*102b*2539*102b0140*Millenium P690 LP PCIe x1
+< ##*102b*2539*102b0180*Display Wall IP Decode 128 MB
+< #*105a*8760*PM8010 [SuperTrak EX SAS and SATA 6G RAID Controller]
+< #*1077*7322*IBA7322 QDR InfiniBand HCA
+< #*107d*6609*Winfast TV 2000 XP RM
+< #*10b5*9016*PLX 9016 8-port serial controller
+< ##*10de*040c*17aa20d9*ThinkPad T61p
+< #*10de*061d*G92 [Quadro FX 2800M]
+< #*10de*061f*G92 [Quadro FX 3800M]
+< #*10de*0a20*GT200 [GeForce GT 220]
+< #*10de*0a60*GT200 [GeForce G210]
+< #*10de*0a65*GT200 [GeForce 210]
+< #*10df*f180*LPSe12002 EmulexSecure Fibre Channel Adapter
+< ##*10ec*8169*1462065c*Hetis 865GV-E (MS-7065)
+< ##*1102*0009*11020018*SB1040
+< #*1102*7006*[SB X-Fi Xtreme Audio] CA0110-IBG PCI to PCIe Bridge
+< #*11ab*2a0c*88W8363 [TopDog] 802.11n Wireless
+< #*11ab*2a30*88W8687 [TopDog] 802.11b/g Wireless
+< #*11ab*2a40*88W8366 [TopDog] 802.11n Wireless
+< #*11ab*6180*88F6180 [Kirkwood] ARM SoC
+< #*11ab*6192*88F6190/6192 [Kirkwood] ARM SoC
+< #*11ab*6281*88F6281 [Kirkwood] ARM SoC
+< #*11ab*6381*MV78xx0 [Discovery Innovation] ARM SoC
+< #*11ab*7810*MV78100 [Discovery Innovation] ARM SoC
+< #*11ab*7820*MV78200 [Discovery Innovation] ARM SoC
+< ##*13f6*8788*10438327*Virtuoso 100 (Xonar DX)
+< ##*13f6*8788*1043835d*Virtuoso 100 (Xonar ST)
+< ##*13f6*8788*1043835e*Virtuoso 200 (Xonar HDAV1.3 Slim)
+< ##*13f6*8788*1043838e*Virtuoso 200 (Xonar DS)
+< #*1462*7650*Hetis 865GV-E (MS-7065)
+< #*14e4*1612*BCM70012 Video Decoder [Crystal HD]
+< ##*14f1*8800*00706902*WinTV HVR-4000-HD
+< #*15b3*676e*MT26478 [ConnectX EN 40GigE, PCIe 2.0 5GT/s]
+< #*15b3*6778*MT26488 [ConnectX VPI PCIe 2.0 5GT/s - IB DDR / 10GigE Virtualization+]
+< #*15b8*7001*APCI7420 2-port Serial Controller
+< #*15b8*7002*APCI7300 Serial Controller
+< #*15bc*0105*Celerity FC-42XS Fibre Channel Adapter
+< ##*15bc*0105*117c0022*Celerity FC-42XS Fibre Channel Adapter
+< #*167f*f0b2*ibaFOB-2io-D ibaFOB-2io-D
+< #*167f*f0b4*ibaFOB-4io-D ibaFOB-4io-D
+< #*1710*9835*9835 2 serial, 1 LPT port PCI Card
+< #*17aa*20b1*ThinkPad T61p
+< #*18f4*00a1*NT4E-STD Capture Card
+< ##*8086*0083*80861205*WiFi Link 1000BGN
+< ##*8086*0083*80861206*WiFi Link 1000BG
+< ##*8086*0083*80861225*WiFi Link 1000BGN
+< ##*8086*0083*80861226*WiFi Link 1000BG
+< ##*8086*0083*80861305*WiFi Link 1000BGN
+< ##*8086*0083*80861306*WiFi Link 1000BG
+< ##*8086*0083*80861325*WiFi Link 1000BGN
+< ##*8086*0083*80861326*WiFi Link 1000BG
+< ##*8086*0084*80861215*WiFi Link 1000 Series 1000BGN
+< ##*8086*0084*80861216*WiFi Link 1000 Series 1000BG
+< ##*8086*0084*80861315*WiFi Link 1000 Series 1000BGN
+< ##*8086*0084*80861316*WiFi Link 1000 Series 1000BG
+< #*8086*008d*WiFi Link 6000 Series
+< ##*8086*008d*80861301*WiFi Link 6000 Series 2x2 6000AGN
+< ##*8086*008d*80861306*WiFi Link 6000 Series 2x2 6000ABG
+< ##*8086*008d*80861307*WiFi Link 6000 Series 2x2 6000BG
+< ##*8086*008d*80861321*WiFi Link 6000 Series 2x2 6000AGN
+< ##*8086*008d*80861326*WiFi Link 6000 Series 2x2 6000ABG
+< #*8086*008e*WiFi Link 6000 Series
+< ##*8086*008e*80861311*WiFi Link 6000 Series 2x2 6000AGN
+< ##*8086*008e*80861316*WiFi Link 6000 Series 2x2 6000ABG
+< #*8086*0102*Sandy Bridge Integrated Graphics Controller
+< #*8086*0103*Sandy Bridge Thermal Management Controller
+< #*8086*0105*Sandy Bridge PCI Express Root Port
+< #*8086*0106*Sandy Bridge Integrated Graphics Controller
+< #*8086*0109*Sandy Bridge PCI Express Root Port
+< #*8086*010a*Sandy Bridge Integrated Graphics Controller
+< #*8086*010b*Sandy Bridge Integrated Graphics Controller
+< #*8086*010d*Sandy Bridge PCI Express Root Port
+< #*8086*010e*Sandy Bridge Integrated Graphics Controller
+< ##*8086*1019*80861019*PRO/1000 CT Desktop Connection
+< ##*8086*10c9*13a30037*DS4100 Secure Multi-Gigabit Server Adapter with Compression
+< #*8086*10f8*82599EB 10 Gigabit Dual Port Backplane Connection
+< #*8086*10f9*82599EB 10 Gigabit CX4 Dual Port Network Connection
+< ##*8086*10fb*80867a11*Ethernet Server Adapter X520-2
+< #*8086*1507*82599EB 10 Gigabit Network Connection
+< #*8086*150d*82576 Gigabit Backplane Connection
+< ##*8086*150d*8086a10c*Gigabit ET Quad Port Mezzanine Card
+< #*8086*1514*10 Gigabit KX4 Network Connection
+< ##*8086*1514*8086000b*Ethernet X520 10GbE Dual Port KX4 Mezz
+< #*8086*1518*82576NS SerDes Gigabit Network Connection
+< ##*8086*24d1*14627650*Hetis 865GV-E (MS-7065)
+< ##*8086*2918*10280236*PowerEdge R610 82801IB (ICH9) LPC Interface Controller
+< ##*8086*2929*103c3628*dv6-1190en
+< #*8086*2c61*Core Processor QuickPath Architecture Generic Non-core Registers
+< #*8086*2d12*Core Processor Reserved
+< #*8086*2d13*Core Processor Reserved
+< ##*8086*3403*10280236*PowerEdge R610 I/O Hub to ESI Port
+< #*8086*3720*Jasper Forest PCI Express Root Port 0
+< ##*8086*422b*80861101*WiFi Link 6000 Series 3x3 6000AGN
+< ##*8086*422b*80861121*WiFi Link 6000 Series 3x3 6000AGN
+< #*8086*422c*WiFi Link 6000 Series
+< ##*8086*422c*80861301*WiFi Link 6000 Series 2x2 6000AGN
+< ##*8086*422c*80861306*WiFi Link 6000 Series 2x2 6000ABG
+< ##*8086*422c*80861307*WiFi Link 6000 Series 2x2 6000BG
+< ##*8086*422c*80861321*WiFi Link 6000 Series 2x2 6000AGN
+< ##*8086*422c*80861326*WiFi Link 6000 Series 2x2 6000ABG
+< ##*8086*4238*80861111*WiFi Link 6000 Series 3x3 6000AGN
+< #*8086*4239*WiFi Link 6000 Series
+< ##*8086*4239*80861311*WiFi Link 6000 Series 2x2 6000AGN
+< ##*8086*4239*80861316*WiFi Link 6000 Series 2x2 6000ABG
+< #*9005*0450*ASC-1405 Unified Serial HBA
+< #*1924*0803*SFL9021 [Solarstorm]
+< ##*1924*0803*19246200*SFN5122F-R0
+< #*1957*0400*P4080E
+< #*1957*0401*P4080
+< #*1957*0408*P4040E
+< #*1957*0409*P4040
+< *199d*Xsigo Systems
+< #*199d*8209*Virtual NIC Device
+< #*aaaa*0001*H1 PCIe over fiber optic host controller
+< #*aaaa*0002*R1BP1 PCIe over fiber optic expansion chassis
+< #*d161*0220*Wildcard TE220 dual-span T1/E1/J1 card 3.3V (PCI-Express)
+< #*d161*0420*Wildcard TE420P quad-span T1/E1/J1 card 3.3V (PCI-Express)
+< #*d161*8003*Wildcard AEX2400 24-port analog card (PCI-Express)
+< #*d161*8006*Wildcard AEX410 4-port analog card (PCI-Express)

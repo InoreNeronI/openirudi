@@ -1,0 +1,19 @@
+all:
+  is_secure: on
+  credentials: sf_guard_user_list
+
+edit:
+  is_secure: on
+  credentials: sf_guard_user_edit
+
+show:
+  is_secure: on
+  credentials: [[sf_guard_user_show,sf_guard_user_edit]] #OR
+
+delete:
+  is_secure: on
+  credentials: sf_guard_user_delete
+
+new:
+  is_secure: on
+  credentials: [[sf_guard_user_new,sf_guard_user_edit]] #OR

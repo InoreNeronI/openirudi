@@ -1,0 +1,22 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Imageset
+    theme:                 adminWithShow
+    non_verbose_templates: true
+    with_show:             true
+    singular:              ~
+    plural:                ~
+    route_prefix:          imageset
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        batch_actions: {}
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~
+      show:    ~

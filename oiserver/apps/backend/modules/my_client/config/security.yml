@@ -1,0 +1,7 @@
+all:
+  is_secure: on
+  credentials: my_client_list
+
+edit:
+  is_secure: on
+  credentials: my_client_edit

@@ -1,0 +1,1 @@
+<p><?php echo __('Oiimage Openirudi is indelible', array(), 'messages') ?></p>

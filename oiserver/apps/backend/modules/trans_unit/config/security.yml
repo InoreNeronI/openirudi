@@ -1,0 +1,19 @@
+all:
+  is_secure: on
+  credentials: trans_unit_list
+
+edit:
+  is_secure: on
+  credentials: trans_unit_edit
+
+show:
+  is_secure: on
+  credentials: [[trans_unit_show,trans_unit_edit]] #OR
+
+delete:
+  is_secure: on
+  credentials: trans_unit_delete
+
+new:
+  is_secure: on
+  credentials: [[trans_unit_new,trans_unit_edit]] #OR

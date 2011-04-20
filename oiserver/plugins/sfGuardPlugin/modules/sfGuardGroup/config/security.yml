@@ -1,0 +1,19 @@
+all:
+  is_secure: on
+  credentials: sf_guard_group_list
+
+edit:
+  is_secure: on
+  credentials: sf_guard_group_edit
+
+show:
+  is_secure: on
+  credentials: [[sf_guard_group_show,sf_guard_group_edit]] #OR
+
+delete:
+  is_secure: on
+  credentials: sf_guard_group_delete
+
+new:
+  is_secure: on
+  credentials: [[sf_guard_group_new,sf_guard_group_edit]] #OR

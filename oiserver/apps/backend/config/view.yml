@@ -1,0 +1,17 @@
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        'Windows Driver Repository'
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    robots:       index, follow
+
+  stylesheets:    [main.css, boxy.css, jquery.jcuploadUI.css]
+
+  javascripts:    [jquery, jquery_boxy, jquery_jcupload, jquery_jcuploadUI, jquery_jcuploadUI_config]
+
+  has_layout:     on
+  layout:         layout

@@ -1,0 +1,27 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Pc
+    theme:                 adminWithShow
+    non_verbose_templates: true
+    with_show:             true
+    singular:              ~
+    plural:                ~
+    route_prefix:          pc
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        #batch_actions: {}
+        #display: [id,mac,hddid,name,ip,netmask,gateway,pcgroup_id]
+        #display: [id,mac,hddid,name,ip,oiimage,date,pcgroup_id]
+        #gemini 2011-02-15
+        display: [id,mac,hddid,name,ip,oiimage,imageset,pcgroup_id]
+      filter:  ~
+      form:
+        display: [mac,hddid,name,ip,netmask,gateway,dns1,dns2,pcgroup_id,partitions]
+      edit:    ~
+      new:     ~
+      show:    ~

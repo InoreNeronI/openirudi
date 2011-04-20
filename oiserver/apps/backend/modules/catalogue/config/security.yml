@@ -1,0 +1,19 @@
+all:
+  is_secure: on
+  credentials: catalogue_list
+
+edit:
+  is_secure: on
+  credentials: catalogue_edit
+
+show:
+  is_secure: on
+  credentials: [[catalogue_show,catalogue_edit]] #OR
+
+delete:
+  is_secure: on
+  credentials: catalogue_delete
+
+new:
+  is_secure: on
+  credentials: [[catalogue_new,catalogue_edit]] #OR
