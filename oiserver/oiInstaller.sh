@@ -235,22 +235,6 @@ createUser(){
 
 set -e
 
-
-# TODO:
-# X Crear usuario ssh, comprobar que ssh server esta en marcha.
-# Cliente:
-# X ip static/dhcp mal.
-# actualizar sistema. Fallo udev.
-# fopen /var/www/openirudi/cache openirudi.yml fallo seguridad permisos?
-# X Cliente version instalada no actualiza DB.
-# javasript boot imagen despued de X segundos.
-# Resolucion pantalla 800x600???
-# tripode ordenador para video.
-# mirar DHCP para compatibilizar Rembo / Openirudi,
-# cuando recarga pagina muestra una barra arriba que desaparece cuando termina de recargar la pagina
-#
-
-
 RPATH="./oiserver"
 
 echo -e "\nOPENIRUDI SERVER INSTALLER\n"
