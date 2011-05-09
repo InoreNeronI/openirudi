@@ -26,14 +26,24 @@ class my_clientActions extends sfActions {
 
     public function executeUpdateClient(){
 
+        file_put_contents('/tmp/aaa.log', "\n0000000000000000000");
+
+
         $this->lastVersion=$this->lastVersion();
         $this->myVersion=$this->myVersion();
+
+file_put_contents('/tmp/aaa.log', "\n01111-- {$this->myVersion} ");
+
+
         if(!isset($this->lastVersion['version']) || !isset($this->lastVersion['url']) ){
             $this->getUser()->setFlash('error', $this->getContext()->getI18N()->__("I can't get last client version"));
             $this->forward('my_client', 'edit');
         }
+file_put_contents('/tmp/aaa.log', "\n011222-- {$this->myVersion} ");
 
         if($this->lastVersion['version'] >= $this->myVersion['version'] || true ){
+
+file_put_contents('/tmp/aaa.log', "\n011333-- {$this->myVersion} ");
 
             $isoPath=sfConfig::get('app_const_root_dir')."/".sfConfig::get('app_const_isopath')."/";
             $clientPath=sfConfig::get('app_const_root_dir')."/".sfConfig::get('app_const_clientpath')."/";;
@@ -49,9 +59,16 @@ class my_clientActions extends sfActions {
 
             $this->getUser()->setFlash('notice','result:: '."$result");
 
+file_put_contents('/tmp/aaa.log', "\n01144444-- {$this->myVersion} ");
+
+
             $con = Propel::getConnection();
             $sql = "UPDATE my_client SET version='{$this->lastVersion['version']}' ";
             $this->getUser()->setFlash('notice',"sql:: $sql",true);
+
+file_put_contents('/tmp/aaa.log', "\n0115555-- {$sql} ");
+
+
             $stmt = $con->prepare($sql);
             $stmt->execute();
             $this->getUser()->setFlash('notice', $this->getContext()->getI18N()->__('Openirudi client has been updated.'));

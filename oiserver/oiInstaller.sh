@@ -2,6 +2,7 @@
 
 
 createDB(){
+
     set +e
     RES=$(echo "SHOW DATABASES;  " | mysql -h localhost -u $DBUSER -p$DBPWD 2>/dev/null )
     I=$(echo -e $RES |grep $DB )
@@ -39,13 +40,20 @@ createDB(){
       fi
     fi
 
-    echo "Import DB"
-    mysql -h localhost -u $DBUSER -p$DBPWD $DB < ${RPATH}/config/openirudiDB.sql
 
     set -e
 }
 
-createUser(){
+importDB(){
+
+    set +e
+echo "    mysql -h localhost -u ${DBUSER} -p${DBPWD} ${DB} < ${RPATH}/config/openirudiDB.sql"
+    mysql -h localhost -u ${DBUSER} -p${DBPWD} ${DB} < ${RPATH}/config/openirudiDB.sql
+
+    set -e
+}
+
+createDBUser(){
 
     set +e
     RES=$(echo "SHOW DATABASES;  " | mysql -h localhost -u $DBUSER -p$DBPWD 2>/dev/null )
@@ -138,6 +146,8 @@ downloadLastClient(){
 
 
 moveFiles(){
+    echo "cp -a ${RPATH}  ${WPATH}"
+
     cp -a ${RPATH}  ${WPATH}
     parseDBuser
     symfonyInit
@@ -182,7 +192,7 @@ parseDBuser(){
     #  database: mysql://openirudi:openirudi@localhost/drivers
 
     cat ${WPATH}/apps/backend/config/factories.yml |sed "s/mysql\:\/\/.*$/mysql\:\/\/${DBUSER}:${DBPWD}@localhost\/${DB}/" > /tmp/d1.yml
-     
+
     mv /tmp/d1.yml ${WPATH}/apps/backend/config/factories.yml
 
     if [ -f /tmp/d1.yml ]
@@ -206,6 +216,16 @@ parseDBuser(){
 
 }
 
+createUser(){
+
+    echo "We create openirudi user in server. We use this user to acces by ssh to upload or download image"
+    set +e
+    useradd  -c "Openirudi client user" openirudi
+    set -e
+
+}
+
+
 ######################################################
 #
 #       MAIN
@@ -215,7 +235,20 @@ parseDBuser(){
 
 set -e
 
-#downloadLastClient
+
+# TODO:
+# X Crear usuario ssh, comprobar que ssh server esta en marcha.
+# Cliente:
+# X ip static/dhcp mal.
+# actualizar sistema. Fallo udev.
+# fopen /var/www/openirudi/cache openirudi.yml fallo seguridad permisos?
+# X Cliente version instalada no actualiza DB.
+# javasript boot imagen despued de X segundos.
+# Resolucion pantalla 800x600???
+# tripode ordenador para video.
+# mirar DHCP para compatibilizar Rembo / Openirudi,
+# cuando recarga pagina muestra una barra arriba que desaparece cuando termina de recargar la pagina
+#
 
 
 RPATH="./oiserver"
@@ -228,7 +261,7 @@ if [ "$CONTINUE" != "yes" ]
 then
   echo "Abort Openirudi Instalation"
   echo "Agur..."
-  echo 
+  echo
   exit
 fi
 
@@ -319,7 +352,7 @@ trap "stty echo ; exit" 1 2 15
 stty -echo
 read BUF
 stty echo
-trap "" 1 2 15 
+trap "" 1 2 15
 
 if [ -n "$BUF" ]
 then
@@ -328,7 +361,7 @@ fi
 
 set +e
 RES=$(echo "SHOW DATABASES;  " | mysql -h localhost -u$DBUSER -p$DBPWD &>/dev/null )
-if [ $? != 0 ] 
+if [ $? != 0 ]
 then
   echo -e "\nI can't query DB. May be \"${DBUSER}\" not exists yet."
 fi
@@ -341,7 +374,15 @@ createDB
 
 echo
 echo "*Create database user"
+createDBUser
+
+echo
+echo "*Create system user"
 createUser
+
+echo
+echo "*Import database content"
+importDB
 
 echo
 echo "*Move files"
@@ -350,6 +391,19 @@ moveFiles
 echo
 echo "*Download last client"
 downloadLastClient
+
+
+echo -e "\n\n\n"
+
+echo "We need ssh server to upload/download images."
+if [ -z "$(netstat -lnpt 2>&1 |grep tcp|grep ':22' )" ]
+then
+    echo "You not have SSH sever installed or is not correctly configured."
+    echo "In Debian or Ubuntu to install ssh server \"apt-get install ssh\""
+else
+    echo "You have ssh sever running"
+fi
+
 
 echo -e "\n\n\n"
 
