@@ -1,20 +1,19 @@
-<?
+<?php
 require_once ('/var/www/oiserver/web/func/pendingTask.php');
 
 # Get MAC address
-$mac = $_GET['mac'];
-
-# Server name (http://server_name/boot/boot.php)
-$server_name = $_SERVER['SERVER_NAME'];
+$mac = strtoupper(str_replace(':','',$_GET['mac']));
 
 # Prompt message:
-$prompt_message = "Sakatu F10 Openirudi-ra sartzeko edo itxaron 10 segundu...";
+$prompt_message = "Sakatu F10 Openirudi-ra sartzeko edo itxaron 5 segundu...";
 # Prompt timeout:
-$prompt_timeout = "10000";
+$prompt_timeout = "5000";
+
+$clientParams=clientParams();
+$t=pendingTask($mac);
 
 ?>
 #!gpxe
-# -----#ipxe
 
 <? if (isset($mac) && !pendingTask($mac)){
 
@@ -24,26 +23,32 @@ $prompt_timeout = "10000";
         }
 ?>
 
-# Press F10 (10 sec)
+# Press F10 (5 sec)
 prompt --key 0x167e --timeout <?=$prompt_timeout?> <?=$prompt_message?> && goto openirudi || goto localboot
 
 <?
-   }
+   }else{
 ?>
+
+goto openirudi
+
+<?
+}
+?>
+
 
 :openirudi
 echo Booting Openirudi
 imgfree
-kernel -n openirudi http://<?=$server_name?>/oiserver/web/func/root/boot/bzImage
-initrd http://<?=$server_name?>/oiserver/web/func/root/boot/rootfs.gz
+kernel -n openirudi http://<?=$clientParams['server'];?>/oiserver/web/func/root/boot/bzImage
+initrd http://<?=$clientParams['server'];?>/oiserver/web/func/root/boot/rootfs.gz
 
-#root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root autologin server=192.168.110.12 user=admin password=21232f297a57a5a743894a0e4a801fc3 type=dhcp ip= netmask= gateway= dns1= dns2=
-
-imgargs openirudi rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root autologin server=<?=$server_name?> user=admin password=21232f297a57a5a743894a0e4a801fc3 type=dhcp
+imgargs openirudi rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root user=root autologin server=<?= $clientParams['server']; ?> password=<?= $clientParams['password']; ?> type=<?= $clientParams['type']; ?> ip=<?= $clientParams['ip']; ?> netmask=<?= $clientParams['netmask']; ?> gateway=<?= $clientParams['gateway']; ?> dns1=<?= $clientParams['dns1']; ?> dns2=<?= $clientParams['dns2']; ?>
 boot openirudi
+
 
 :localboot
 echo Booting from local disk
-set 209:string http://<?=$server_name?>/oiserver/web/func/root/pxelinux.cfg/default
-set 210:string http://<?=$server_name?>/oiserver/web/func/root/pxelinux.cfg/
-chain http://<?=$server_name?>/oiserver/web/func/root/pxelinux.0
+set 209:string http://<?=$clientParams['server'];?>/oiserver/web/func/root/pxelinux.cfg/default
+set 210:string http://<?=$clientParams['server'];?>/oiserver/web/func/root/pxelinux.cfg/
+chain http://<?=$clientParams['server'];?>/oiserver/web/func/root/pxelinux.0

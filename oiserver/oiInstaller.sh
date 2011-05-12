@@ -391,16 +391,26 @@ fi
 
 echo -e "\n\n\n"
 
-echo "We need tftp server to boot with pxe."
+echo "Your turn!"
+echo "*1/3 TFTP SERVER:"
+echo -e "\tWe need tftp server to boot with pxe."
 if [ -z "$(netstat -lnpu 2>&1 |grep udp|grep ':69' )" ]
 then
-    echo "You not have tftp sever installed or is not correctly configured."
-    echo "In Debian or Ubuntu to install tftp server \"apt-get install atftpd\""
+    echo -e "\tYou not have tftp sever installed or is not correctly configured."
+    echo -e "\tIn Debian or Ubuntu to install tftp server \"apt-get install atftpd\""
 else
-    echo "You have tftp sever running"
+    echo "\tYou have tftp sever running"
 fi
 
-echo "Configure \"${WPATH}/web/func/root\"  as tftp server path"
+echo "\tConfigure \"${WPATH}/web/func/root\"  as tftp server path"
+
+echo "*2/3 SUDO:"
+echo -e "\tWe need execute \"oiserver.sh\" as root."
+echo -t "\tExecute visudo and add folowing lines(We supossed www-data is web server user):"
+
+echo -e "\t\tCmnd_Alias CMDOPENIRUDI = /home/aitor/kodea/oiserver/bin/oiserver.sh"
+echo -e "\t\twww-data ALL = NOPASSWD: CMDOPENIRUDI"
+
 
 echo -e "\n\n\n"
 

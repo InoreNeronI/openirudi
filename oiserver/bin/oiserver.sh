@@ -52,12 +52,30 @@ getNetDevices(){
         echo "ERROR: Wrong argument number: error $0 getNetDevices";
         exit 1
     fi
-    DEV=$(/sbin/ifconfig |egrep -w 'eth[0-9]+|inet addr'|grep -v '127.0.0.1'|tr -s " " |tr -s " " "\n"|egrep -w 'eth[0-9]+|addr:[0-9]+.[0-9]+.[0-9]+.[0-9]+' |tr -s "\n" ";"|sed 's/addr://g')
+
+    DEVICES=$(cat /proc/net/dev |grep ':' |grep -v lo |cut -d ":" -f 1| tr -d " " )
     if [ $? != 0 ]
     then
       echo "ERROR listing network devices";
-      exit;
+      exit 1;
     fi
+
+    DEV=""
+    for D1 in ${DEVICES}
+    do
+        IP=$(/sbin/ifconfig $D1 |grep "inet addr" |egrep 'addr:[0-9]+.[0-9]+.[0-9]+.[0-9]+' |tr -s "\n" ";"|sed 's/addr://g' |awk '{print $2}' )
+        if [ $? != 0 ]
+        then
+          echo "ERROR listing network devices";
+          exit 1;
+        fi
+
+        if [ -n "${D1}" ] && [ -n "${IP}" ]
+        then
+            DEV="${DEV}${D1};${IP};"
+        fi
+    done
+
     echo "!@@@$DEV!@@@"
 }
 
@@ -86,16 +104,9 @@ genOpenirudiIso(){
         exit 1
     fi
 
-MENU="kbdmap es.kbd
-label openirudi
-	kernel /boot/bzImage
-	append initrd=/boot/rootfs.gz rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root autologin server=${4} user=${5} password=${6} type=${7} ip=${8} netmask=${9} gateway=${10} dns1=${11} dns2=${12}
-
-implicit 0
-prompt 1
-timeout 2
-default openirudi"
-
+    MENU="
+    default chain.c32 hd0 0
+    "
 
     if [ -d "${2}" ] && [ -d "${3}" ];
     then
@@ -107,7 +118,7 @@ default openirudi"
         fi
         echo -e "${MENU}" > boot/isolinux/isolinux.cfg
 
-        
+
 
         $(which genisoimage) -R -o ${3}/openirudi.iso -b boot/isolinux/isolinux.bin -c boot/isolinux/boot.cat -no-emul-boot -boot-load-size 4 -V "openirudi" -input-charset iso8859-1 -boot-info-table .
 
