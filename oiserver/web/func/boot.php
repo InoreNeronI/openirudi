@@ -1,5 +1,5 @@
 <?php
-require_once ('/var/www/oiserver/web/func/pendingTask.php');
+require_once ('pendingTask.php');
 
 # Get MAC address
 $mac = strtoupper(str_replace(':','',$_GET['mac']));
@@ -43,7 +43,9 @@ imgfree
 kernel -n openirudi http://<?=$clientParams['server'];?>/oiserver/web/func/root/boot/bzImage
 initrd http://<?=$clientParams['server'];?>/oiserver/web/func/root/boot/rootfs.gz
 
-imgargs openirudi rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root user=root autologin server=<?= $clientParams['server']; ?> password=<?= $clientParams['password']; ?> type=<?= $clientParams['type']; ?> ip=<?= $clientParams['ip']; ?> netmask=<?= $clientParams['netmask']; ?> gateway=<?= $clientParams['gateway']; ?> dns1=<?= $clientParams['dns1']; ?> dns2=<?= $clientParams['dns2']; ?>
+imgargs openirudi rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root user=root autologin server=<?= $clientParams['server']; ?> password=<?= $clientParams['password']; ?> type=<?= $clientParams['type']; ?> ip=<?= $clientParams['ip']; ?> netmask=<?= $clientParams['netmask']; ?> gateway=<?= $clientParams['gateway']; ?> dns1=<?= $clientParams['dns1']; ?> dns2=<?= $clientParams['dns2']."\n"; ?>
+
+
 boot openirudi
 
 

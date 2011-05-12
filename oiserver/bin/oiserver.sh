@@ -104,9 +104,19 @@ genOpenirudiIso(){
         exit 1
     fi
 
-    MENU="
+    MENU_PXE="
     default chain.c32 hd0 0
     "
+
+    MENU_ISO="kbdmap es.kbd
+ 	label openirudi
+ 		kernel /boot/bzImage
+ 		append initrd=/boot/rootfs.gz rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root autologin server=${4} user=${5} password=${6} type=${7} ip=${8} netmask=${9} gateway=${10} dns1=${11} dns2=${12}
+ 	implicit 0
+ 	prompt 1
+ 	timeout 2
+ 	default openirudi"
+
 
     if [ -d "${2}" ] && [ -d "${3}" ];
     then
@@ -116,32 +126,22 @@ genOpenirudiIso(){
                 echo "I can't cd to ${2}"
                 exit 1
         fi
-        echo -e "${MENU}" > boot/isolinux/isolinux.cfg
-
-
+        echo "${MENU_ISO}" > boot/isolinux/isolinux.cfg
 
         $(which genisoimage) -R -o ${3}/openirudi.iso -b boot/isolinux/isolinux.bin -c boot/isolinux/boot.cat -no-emul-boot -boot-load-size 4 -V "openirudi" -input-charset iso8859-1 -boot-info-table .
 
-
-        if [ "${7}" = 'dhcp' ]
+        if [ ! -d ${3}/boot ]
         then
-            if [ ! -d ${3}/boot ]
-            then
-                mkdir ${3}/boot
-            fi
-            if [ ! -d ${3}/pxelinux.cfg ]
-            then
-                mkdir ${3}/pxelinux.cfg
-            fi
-            cp boot/isolinux/isolinux.cfg ${3}/pxelinux.cfg/default
-            cp boot/rootfs.gz ${3}/boot/rootfs.gz
-            cp boot/bzImage ${3}/boot/bzImage
-
-            service dnsmasq restart
-
-        else
-            service dnsmasq stop
+            mkdir ${3}/boot
         fi
+        if [ ! -d ${3}/pxelinux.cfg ]
+        then
+            mkdir ${3}/pxelinux.cfg
+        fi
+        echo "${MENU_PXE}" > ${3}/pxelinux.cfg/default
+
+        cp boot/rootfs.gz ${3}/boot/rootfs.gz
+        cp boot/bzImage ${3}/boot/bzImage
 
     fi
 
