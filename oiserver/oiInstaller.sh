@@ -31,10 +31,10 @@ createDB(){
             CRE=$(echo "CREATE DATABASE ${DB} ;"  | mysql -h localhost -u $ROOTUSER -p$ROOTPWD )
             if [ $? != 0 ]
             then
-                echo "${ROOTPWD} can't create DB."
+                echo "${ROOTPWD} can't create Database."
                 exit 1
             else
-                echo "${DB} has been created."
+                echo "${DB} has been created succesfully."
             fi
         fi
       fi
@@ -53,6 +53,35 @@ echo "    mysql -h localhost -u ${DBUSER} -p${DBPWD} ${DB} < ${RPATH}/config/ope
     set -e
 }
 
+addCron(){
+    CMD="* * * * * wget -O /dev/null http://localhost/oiserver/web/func/wakeUp.php &> /dev/null"
+    cat <(crontab -l|grep -v wakeUp.php ) <(echo "${CMD}") | crontab -
+}
+
+addSudo(){
+
+    if [ -f /tmp/sudoers.tmp ]
+    then
+        rm /tmp/sudoers.tmp
+    fi
+
+    cat /etc/sudoers | grep -v CMDOPENIRUDI | grep -v OpenIrudi > /tmp/sudoers.tmp
+
+    echo "# OpenIrudi" >> /tmp/sudoers.tmp
+    echo "Cmnd_Alias CMDOPENIRUDI = /var/www/oiserver/bin/oiserver.sh" >> /tmp/sudoers.tmp
+    echo "www-data ALL = NOPASSWD: CMDOPENIRUDI" >> /tmp/sudoers.tmp
+
+    visudo -c -f /tmp/sudoers.tmp
+    if [ "$?" -eq 0 ];
+    then
+        cp /tmp/sudoers.tmp /etc/sudoers
+    fi
+
+    rm /tmp/sudoers.tmp
+
+}
+
+
 createDBUser(){
 
     set +e
@@ -60,7 +89,7 @@ createDBUser(){
     I=$(echo -e $RES |grep $DB )
     if [ -z "$I" ]
     then
-        echo "${DBUSER} user can't access to ${DB} database. I will try create ${DBUSER} if not exist."
+        echo "${DBUSER} user can't access to ${DB} database. I will try to create ${DBUSER} if does not exist."
 
         if [ -z "${ROOTUSER}" ]
         then
@@ -86,7 +115,7 @@ createDBUser(){
 
 rootUser(){
     ROOTUSER='root'
-    echo -e "Give me user with privileges to create  new database or new user? [${ROOTUSER}]"
+    echo -e "Username of user with admin privileges in a database: [${ROOTUSER}]"
     read BUF
     if [ -n "$BUF" ]
     then
@@ -94,7 +123,7 @@ rootUser(){
     fi
 
     ROOTPWD=''
-    echo -e "Give me ${ROOTUSER}'s password?"
+    echo -e "${ROOTUSER} Password:"
 
     trap "stty echo ; exit" 1 2 15
     stty -echo
@@ -112,8 +141,8 @@ rootUser(){
     if [ $? != 0 ]
     then
       echo
-      echo "I need user user with privileges to create new database or new user, but ${ROOTUSER} has not privileges."
-      echo "I can no continue"
+      echo "Introduced data is incorrect, please retry with a different user or password, ${ROOTUSER} has not privileges."
+      echo "Proccess Stopped"
       exit 1
     fi
 
@@ -124,7 +153,7 @@ downloadLastClient(){
     APPYML="${WPATH}/apps/backend/config/app.yml"
     if [ ! -f $APPYML ]
     then
-        echo "We not found config file ${APPYML}"
+        echo "I could not open config file ${APPYML}"
         exit 1
     fi
 
@@ -132,7 +161,7 @@ downloadLastClient(){
     LASTCLIENTV="$(wget -O /tmp/last.txt $LASTURL &>/dev/null )"
     if [ $? != 0 ]
     then
-        echo "We can't connect to ${LASTURL} to download Openirudi client"
+        echo "We can't connect and download Openirudi client from ${LASTURL}"
         exit 1
     fi
     LASTCLIENT="$(cat /tmp/last.txt |awk 'BEGIN { FS = "@@@" } ; {print $2}' )"
@@ -218,9 +247,12 @@ parseDBuser(){
 
 createUser(){
 
-    echo "We create openirudi user in server. We use this user to acces by ssh to upload or download image"
+    echo "Creating an ssh user on server size, please wait... we need this user for images upload/download tasks"
     set +e
-    useradd  -c "Openirudi client user" openirudi
+    if [ -n "$(id openirudi)" ]
+    then
+        useradd  -c "Openirudi client user" openirudi
+    fi
     set -e
 
 }
@@ -237,14 +269,14 @@ set -e
 
 RPATH="./oiserver"
 
-echo -e "\nOPENIRUDI SERVER INSTALLER\n"
-echo "Continue? (yes/NO)"
+echo -e "\nOPENIRUDI SERVER INSTALLATION\n"
+echo "Would you like to continue? (yes/NO)"
 read CONTINUE
 
 if [ "$CONTINUE" != "yes" ]
 then
-  echo "Abort Openirudi Instalation"
-  echo "Agur..."
+  echo "Abort Openirudi Installation"
+  echo "Agur benur eta jan yogurth..."
   echo
   exit
 fi
@@ -263,7 +295,7 @@ ROOTPWD=''
 GENISOIMAGE=$(which genisoimage)
 if [ $? != 0 ]
 then
-  echo -e "\nHave you genisoimage installed?"
+  echo -e "\ngenisoimage not present!"
   echo
   exit 1
 fi
@@ -271,7 +303,15 @@ fi
 GENISOIMAGE=$(which mysql)
 if [ $? != 0 ]
 then
-  echo -e "\nHave you mysql client installed?"
+  echo -e "\nmysql client not present!"
+  echo
+  exit 1
+fi
+
+SUDO=$(which sudo)
+if [ $? != 0 ]
+then
+  echo -e "\nOpenIrudi's sever needs \"sudo\" to execute oiserver.sh. Install "sudo" and run installer again!"
   echo
   exit 1
 fi
@@ -281,7 +321,7 @@ fi
 PHP=$(which php)
 if [ $? != 0 ]
 then
-  echo "Have you php installed?"
+  echo "php not present!"
   echo
   exit 1
 fi
@@ -289,14 +329,14 @@ fi
 WEB=$(wget -O /dev/null http://localhost &>/dev/null)
 if [ $? != 0 ]
 then
-  echo "ERROR: Have you web server installed?"
-  echo "We not found http://localhost in your server"
+  echo "ERROR: Web server not present!"
+  echo "We couldn't find http://localhost in your server"
   echo
   exit 1
 fi
 
 WPATH='/var/www/'
-echo -e "\nGive me Openirudi's root path? [${WPATH}]"
+echo -e "\nInstallation path: [${WPATH}]"
 read BUF
 if [ -n "$BUF" ]
 then
@@ -305,16 +345,16 @@ fi
 
 if [ ! -d "$WPATH" ]
 then
-    echo "$WPATH is no valid path. Exist?"
-    echo "We can't continue!"
+    echo "$WPATH doesn't exist or you don't have permissions?"
+    echo "Abort Openirudi Installation"
     exit 1
 fi
 
-WPATH="${WPATH}/oiserver"
+WPATH="${WPATH}oiserver"
 
 
 DB='openirudiDB'
-echo -e "\nGive me Openirudi's DB? [${DB}]"
+echo -e "\nDatabase name: [${DB}]"
 read BUF
 if [ -n "$BUF" ]
 then
@@ -322,7 +362,7 @@ then
 fi
 
 DBUSER='openirudi'
-echo -e "Give me database user to access to ${DB} database? [${DBUSER}]"
+echo -e "${DB} database username: [${DBUSER}]"
 read BUF
 if [ -n "$BUF" ]
 then
@@ -330,7 +370,7 @@ then
 fi
 
 DBPWD='openirudi'
-echo -e "Give me ${DBUSER}'s password to access to ${DB}?"
+echo -e "${DBUSER} user password for ${DB}?"
 
 trap "stty echo ; exit" 1 2 15
 stty -echo
@@ -373,48 +413,53 @@ echo "*Move files"
 moveFiles
 
 echo
-echo "*Download last client"
+echo "*Add new entry in sudoers file"
+addSudo
+
+echo
+echo "*Add new job to crontab"
+addCron
+
+echo
+echo "*Downloading lastest Openirudi client"
 downloadLastClient
 
 
 echo -e "\n\n\n"
+echo "*** Important: You need SSH and TFTP servers running to enjoy properly from Openirudi. ***"
 
-echo "We need ssh server to upload/download images."
+echo "Checking if ssh server is present."
 if [ -z "$(netstat -lnpt 2>&1 |grep tcp|grep ':22' )" ]
 then
-    echo "You not have SSH sever installed or is not correctly configured."
-    echo "In Debian or Ubuntu to install ssh server \"apt-get install ssh\""
+    echo "You don't have SSH sever installed or is not running."
+    echo "(Debian or Ubuntu) install it with the following command \"apt-get install ssh\""
 else
-    echo "You have ssh sever running"
+    echo "ssh sever is running"
 fi
 
 
 echo -e "\n\n\n"
 
-echo "Your turn!"
-echo "*1/3 TFTP SERVER:"
-echo -e "\tWe need tftp server to boot with pxe."
+echo "Checking if tftp server is present."
 if [ -z "$(netstat -lnpu 2>&1 |grep udp|grep ':69' )" ]
 then
-    echo -e "\tYou not have tftp sever installed or is not correctly configured."
-    echo -e "\tIn Debian or Ubuntu to install tftp server \"apt-get install atftpd\""
+    echo "You don't have tftp sever installed, runnig or you didn't configure properly."
+    echo "(Debian or Ubuntu) install it with the following command \"apt-get install atftpd\""
 else
-    echo "\tYou have tftp sever running"
+    echo "tftp sever is running"
 fi
 
-echo "\tConfigure \"${WPATH}/web/func/root\"  as tftp server path"
-
-echo "*2/3 SUDO:"
-echo -e "\tWe need execute \"oiserver.sh\" as root."
-echo -t "\tExecute visudo and add folowing lines(We supossed www-data is web server user):"
-
-echo -e "\t\tCmnd_Alias CMDOPENIRUDI = /home/aitor/kodea/oiserver/bin/oiserver.sh"
-echo -e "\t\twww-data ALL = NOPASSWD: CMDOPENIRUDI"
-
+echo "*** Remember to configure \"${WPATH}/web/func/root\"  as tftp server path. ****"
 
 echo -e "\n\n\n"
 
 
 
-echo "Openirudi's server is sucesfully installed. Don't forget to configure your tftp server."
-echo "Agur..."
+echo "Openirudi's server is sucesfully installed. Don't forget to configure your tftp server"
+
+echo "You can start managing Openirudi via web from: http://localhost/oiserver
+user: admin
+pass: admin"
+
+
+echo "Enjoy!"

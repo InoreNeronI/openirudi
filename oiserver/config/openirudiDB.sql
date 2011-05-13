@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: openirudiDB
+-- Host: localhost    Database: oiDB
 -- ------------------------------------------------------
 -- Server version	5.1.49-1ubuntu8.1
 
@@ -36,6 +36,14 @@ CREATE TABLE `asign_imageset` (
 ) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `asign_imageset`
+--
+
+LOCK TABLES `asign_imageset` WRITE;
+/*!40000 ALTER TABLE `asign_imageset` DISABLE KEYS */;
+/*!40000 ALTER TABLE `asign_imageset` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `catalogue`
@@ -90,6 +98,10 @@ CREATE TABLE `device` (
 -- Dumping data for table `device`
 --
 
+LOCK TABLES `device` WRITE;
+/*!40000 ALTER TABLE `device` DISABLE KEYS */;
+/*!40000 ALTER TABLE `device` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `driver`
@@ -121,6 +133,10 @@ CREATE TABLE `driver` (
 -- Dumping data for table `driver`
 --
 
+LOCK TABLES `driver` WRITE;
+/*!40000 ALTER TABLE `driver` DISABLE KEYS */;
+/*!40000 ALTER TABLE `driver` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `imageset`
@@ -140,6 +156,10 @@ CREATE TABLE `imageset` (
 -- Dumping data for table `imageset`
 --
 
+LOCK TABLES `imageset` WRITE;
+/*!40000 ALTER TABLE `imageset` DISABLE KEYS */;
+/*!40000 ALTER TABLE `imageset` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `my_client`
@@ -168,6 +188,10 @@ CREATE TABLE `my_client` (
 -- Dumping data for table `my_client`
 --
 
+LOCK TABLES `my_client` WRITE;
+/*!40000 ALTER TABLE `my_client` DISABLE KEYS */;
+/*!40000 ALTER TABLE `my_client` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `my_task`
@@ -199,6 +223,10 @@ CREATE TABLE `my_task` (
 -- Dumping data for table `my_task`
 --
 
+LOCK TABLES `my_task` WRITE;
+/*!40000 ALTER TABLE `my_task` DISABLE KEYS */;
+/*!40000 ALTER TABLE `my_task` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `oiimages`
@@ -228,6 +256,10 @@ CREATE TABLE `oiimages` (
 -- Dumping data for table `oiimages`
 --
 
+LOCK TABLES `oiimages` WRITE;
+/*!40000 ALTER TABLE `oiimages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `oiimages` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `pack`
@@ -276,6 +308,11 @@ CREATE TABLE `path` (
 -- Dumping data for table `path`
 --
 
+LOCK TABLES `path` WRITE;
+/*!40000 ALTER TABLE `path` DISABLE KEYS */;
+/*!40000 ALTER TABLE `path` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `pc`
 --
@@ -303,6 +340,11 @@ CREATE TABLE `pc` (
 -- Dumping data for table `pc`
 --
 
+LOCK TABLES `pc` WRITE;
+/*!40000 ALTER TABLE `pc` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pc` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `pcgroup`
 --
@@ -321,6 +363,10 @@ CREATE TABLE `pcgroup` (
 -- Dumping data for table `pcgroup`
 --
 
+LOCK TABLES `pcgroup` WRITE;
+/*!40000 ALTER TABLE `pcgroup` DISABLE KEYS */;
+/*!40000 ALTER TABLE `pcgroup` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `sf_guard_group`
@@ -452,7 +498,7 @@ CREATE TABLE `sf_guard_user` (
 
 LOCK TABLES `sf_guard_user` WRITE;
 /*!40000 ALTER TABLE `sf_guard_user` DISABLE KEYS */;
-INSERT INTO `sf_guard_user` VALUES (1,'admin','sha1','352a2cb05c031be84cabc47209ff9950','04224f32083ffa24c34e63948917a317da2f8cc0','2010-03-08 19:07:59','2011-03-31 19:44:02',1,1),(2,'marta','sha1','c530bf902bb2faf82a67ef83805cf9bf','5aa831764acae5a6a8c1d084ffdb61df9cff855e','2010-03-09 10:58:29','2010-03-09 19:23:44',1,0),(3,'hector','sha1','ad56ffba73bec1483eecd73c0e9d91f9','815ebe9a3c43c6c4e12fde55085b07ba857c042b','2010-03-09 11:21:56','2010-03-09 19:24:27',1,0);
+INSERT INTO `sf_guard_user` VALUES (1,'admin','sha1','352a2cb05c031be84cabc47209ff9950','04224f32083ffa24c34e63948917a317da2f8cc0','2010-03-08 19:07:59','2011-03-31 19:44:02',1,1);
 /*!40000 ALTER TABLE `sf_guard_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,6 +572,10 @@ CREATE TABLE `subsys` (
 -- Dumping data for table `subsys`
 --
 
+LOCK TABLES `subsys` WRITE;
+/*!40000 ALTER TABLE `subsys` DISABLE KEYS */;
+/*!40000 ALTER TABLE `subsys` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `system`
@@ -546,6 +596,11 @@ CREATE TABLE `system` (
 --
 -- Dumping data for table `system`
 --
+
+LOCK TABLES `system` WRITE;
+/*!40000 ALTER TABLE `system` DISABLE KEYS */;
+/*!40000 ALTER TABLE `system` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `trans_unit`
@@ -597,6 +652,11 @@ CREATE TABLE `type` (
 -- Dumping data for table `type`
 --
 
+LOCK TABLES `type` WRITE;
+/*!40000 ALTER TABLE `type` DISABLE KEYS */;
+/*!40000 ALTER TABLE `type` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `vendor`
 --
@@ -617,6 +677,10 @@ CREATE TABLE `vendor` (
 -- Dumping data for table `vendor`
 --
 
+LOCK TABLES `vendor` WRITE;
+/*!40000 ALTER TABLE `vendor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `vendor` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -627,4 +691,4 @@ CREATE TABLE `vendor` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-04-01 17:13:34
+-- Dump completed on 2011-05-13 17:53:47
