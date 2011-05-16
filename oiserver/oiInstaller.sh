@@ -251,7 +251,7 @@ createUser(){
     set +e
     if [ -n "$(id openirudi)" ]
     then
-        useradd  -c "Openirudi client user" openirudi
+        useradd  -m -c "Openirudi client user" openirudi
     fi
     set -e
 
