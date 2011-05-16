@@ -3,6 +3,9 @@ $DB='openirudiDB';
 $DBUSER='openirudi';
 $DBPWD='openirudi';
 
+define('ROOT','/home/openirudi/' );
+
+
 $link = mysql_connect('localhost', $DBUSER, $DBPWD);
 if (!$link) {
     echo 'Could not connect: ' . mysql_error();exit();

@@ -45,7 +45,7 @@ if(isset($_REQUEST['out_params'])){
             echo '<BR/>'.$sql.'<BR/>';
             exit;
         }
-        echo "!@@@".mysql_insert_id()."!@@@";
+        echo "!@@@".  base64_encode(serialize(mysql_insert_id()))."!@@@";
     }else{
       //	id 	mac 	hddid 	name 	ip 	netmask 	gateway 	dns 	pcgroup_id 	partitions
         $sql='UPDATE pc SET name="'.$args['name'].'",ip="'.$args['ip'].'",netmask="'.$args['netmask'].'",gateway="'.$args['gateway'].'",dns="'.$args['dns'].'",partitions=\''.$args['partitions'].'\' WHERE mac="'.$args['mac'].'" AND hddid="'.$args['hddid'].'"';
@@ -57,7 +57,7 @@ if(isset($_REQUEST['out_params'])){
             echo '<BR/>'.$sql.'<BR/>';
             exit;
         }
-        echo "!@@@UPDATE!@@@";
+        echo "!@@@".base64_encode(serialize("UPDATE"))."!@@@";
 
     }
 
