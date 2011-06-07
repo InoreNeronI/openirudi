@@ -265,7 +265,7 @@ createUser(){
 #######################################################
 
 
-set -e
+set +e
 
 RPATH="./oiserver"
 
@@ -281,6 +281,7 @@ then
   exit
 fi
 
+echo "path berria"
 INSTALLER=$0
 IPATH=$(dirname "${INSTALLER}");
 if [ "$(pwd )" != "${IPATH}" ]
@@ -292,6 +293,7 @@ fi
 ROOTUSER=''
 ROOTPWD=''
 
+echo "ea genisoimage badagoen"
 GENISOIMAGE=$(which genisoimage)
 if [ $? != 0 ]
 then
@@ -300,6 +302,7 @@ then
   exit 1
 fi
 
+echo "ea mysql badagoen"
 GENISOIMAGE=$(which mysql)
 if [ $? != 0 ]
 then
@@ -308,6 +311,7 @@ then
   exit 1
 fi
 
+echo "ea sudo badagoen"
 SUDO=$(which sudo)
 if [ $? != 0 ]
 then
@@ -317,14 +321,17 @@ then
 fi
 
 
-
+echo "ea php badagoen"
 PHP=$(which php)
 if [ $? != 0 ]
 then
   echo "php not present!"
+  echo "You need php5-cli"
   echo
   exit 1
 fi
+
+echo "ea apache martxan dagoen"
 
 WEB=$(wget -O /dev/null http://localhost &>/dev/null)
 if [ $? != 0 ]
