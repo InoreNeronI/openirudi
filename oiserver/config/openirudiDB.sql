@@ -249,7 +249,7 @@ CREATE TABLE `oiimages` (
   `filesystem_type` varchar(50) NOT NULL,
   `path` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,6 +258,7 @@ CREATE TABLE `oiimages` (
 
 LOCK TABLES `oiimages` WRITE;
 /*!40000 ALTER TABLE `oiimages` DISABLE KEYS */;
+INSERT INTO `oiimages` VALUES (53,NULL,'openirudi',NULL,'oiSystem',NULL,NULL,NULL,83,0,'ext3',NULL);
 /*!40000 ALTER TABLE `oiimages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -691,4 +692,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-05-13 17:53:47
+-- Dump completed on 2011-06-07 23:12:13

@@ -19,7 +19,9 @@ all:
     packs_root:         '%SF_ROOT_DIR%/../DriverPacks'
     temp_path:          '/tmp'
     pwd:                'sjdlaksjda90qwñaslkdSS'
-    lastClient:         'http://openirudi.googlecode.com/files/update.txt'
+    #lastClient:         'http://openirudi.googlecode.com/files/update.txt'
+    lastTestingClient:  'http://openirudi.googlecode.com/files/update-testing.txt'
+
   sfLanguageSwitch:
     #flagPath:  /sfLanguageSwitch/images/flag   # optional if you wanna change the path
     availableLanguages:
