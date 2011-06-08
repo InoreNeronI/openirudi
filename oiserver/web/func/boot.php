@@ -24,7 +24,11 @@ $t=pendingTask($mac);
 ?>
 
 # Press F10 (5 sec)
-prompt --key 0x167e --timeout <?=$prompt_timeout?> <?=$prompt_message?> && goto openirudi || goto localboot
+<?php echo "echo $prompt_message \n"; ?>
+echo
+echo
+echo
+prompt --key 0x167e --timeout <?=$prompt_timeout?> ... && goto openirudi || goto localboot
 
 <?
    }else{
