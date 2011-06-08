@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# Script de instalación del servidor de Openirudi
 
 createDB(){
 
