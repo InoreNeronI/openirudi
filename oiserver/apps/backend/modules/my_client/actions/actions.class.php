@@ -286,6 +286,7 @@ class my_clientActions extends sfActions {
     private function lastVersion(){
         $lastVersion=$this->getUser()->getAttribute('lastVersion');
         if(empty($lastVersion)){
+            $u=sfConfig::get('app_const_lastClient')."?ramdom=".rand();
             $last1=file_get_contents(sfConfig::get('app_const_lastClient')."?ramdom=".rand() );
             if($last1 === false ){
                 $this->getUser()->setFlash('error', $this->getContext()->getI18N()->__("I can't get last client version"));
