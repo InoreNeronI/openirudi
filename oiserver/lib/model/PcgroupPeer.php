@@ -22,7 +22,9 @@ class PcgroupPeer extends BasePcgroupPeer
 					foreach($my_array as $i=>$row){
 						//echo $row['partitionName'].'<BR>';
 						if(self::in_partition_list($row['partitionName'],$partition_list)){
-							$my_list[]=$row['partitionName'];							
+							if(!in_array($row['partitionName'],$my_list)){
+								$my_list[]=$row['partitionName'];
+							}								
 						}
 					}
 				}

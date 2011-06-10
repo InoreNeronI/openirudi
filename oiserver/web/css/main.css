@@ -6,8 +6,8 @@ body {
     background:#fff;
     background-color:#EEEEEE;
     min-width:600px;    /* Minimum width of layout - remove line if not required */										/* The min-width property does not work in old versions of Internet Explorer */
-    /*font-size:0.8em;*/
-	font-size:0.6em;
+    font-size:0.8em;
+	/*font-size:0.6em;*/
     font-family: "Lucida Grande",Verdana,Arial,Helvetica,sans-serif;
 }
 
