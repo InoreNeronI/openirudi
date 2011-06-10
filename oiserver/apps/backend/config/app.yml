@@ -1,4 +1,5 @@
 # default values
+
 all:
   hardware:
     types:              [pci,usb,hid,acpi,scsi,pcmcia,hdaudio]
