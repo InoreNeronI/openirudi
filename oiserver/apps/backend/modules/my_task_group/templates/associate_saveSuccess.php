@@ -1,0 +1,1 @@
+<?php include_partial('global/associate_saved')?>
