@@ -38,7 +38,8 @@ class my_task_groupActions extends sfActions
 	if(count($ids)>0){
 		$this->pcgroup=PcgroupPeer::retrieveByPk($ids[0]);
 		$this->pc_list=PcgroupPeer::get_pc_list($ids[0]);
-		$this->partition_list=PcPeer::prepare_partitions($this->pc_list);		
+		$this->partition_list=PcPeer::prepare_partitions($this->pc_list);
+		//echo print_r($this->pc_list,1);exit();		
 		$this->group_partition_list=PcGroupPeer::prepare_partitions($this->partition_list);
 		//echo print_r($this->group_partition_list,1);exit();
 		$this->oiimages_list=OiimagesPeer::get_oiimages_list();
@@ -46,43 +47,48 @@ class my_task_groupActions extends sfActions
 		//gemini 2011-02-15
 		$this->imageset_assoc=ImagesetPeer::get_imageset_assoc();
 		//
-		//gaur		
-		if(count($this->pc_list)>0){		
-			//$this->disk_assoc=MyTaskPeer::get_disk_list_by_partition_list(MyTaskPeer::form_partition_list_by_pc($this->pc_list[0]));	
-			$my_disk_assoc=array();
-			foreach($this->pc_list as $i=>$row){
-				$my_disk_assoc[$row->getId()]=MyTaskPeer::get_disk_list_by_partition_list(MyTaskPeer::form_partition_list_by_pc($row));	
+		$num_pc=count($this->pc_list);
+		if($num_pc>0){
+			//gaur		
+			//if($num_pc>0){		
+				//$this->disk_assoc=MyTaskPeer::get_disk_list_by_partition_list(MyTaskPeer::form_partition_list_by_pc($this->pc_list[0]));	
+				$my_disk_assoc=array();
+				foreach($this->pc_list as $i=>$row){
+					$my_disk_assoc[$row->getId()]=MyTaskPeer::get_disk_list_by_partition_list(MyTaskPeer::form_partition_list_by_pc($row));	
+				}
+				$this->disk_assoc=PcGroupPeer::prepare_disk_assoc($my_disk_assoc);
+				//echo print_r($this->disk_assoc,1);exit();
+			/*}else{
+				$this->disk_assoc['']='';
+			}*/
+			
+			
+			//
+			if($request->getParameter('associate_submit')){
+				$this->getUser()->setAttribute('program_group_is_associate',true);				
 			}
-			$this->disk_assoc=PcGroupPeer::prepare_disk_assoc($my_disk_assoc);
-			//echo print_r($this->disk_assoc,1);exit();
+			//
+			if($request->getParameter('clear_program_associate')){
+				$this->getUser()->setAttribute('program_group_is_clear',true);	
+			}
+			//
+			if($request->getParameter('clone_now')){
+				$this->getUser()->setAttribute('clone_group_is_now',true);				
+			}
+			//
+			if($this->getUser()->getAttribute('program_group_is_associate')){	
+				$this->setTemplate('associate');
+			}
+			//
+			if($this->getUser()->getAttribute('clone_group_is_now')){
+				$this->setTemplate('now');
+			}
+			if($this->getUser()->getAttribute('program_group_is_clear')){	
+				$this->setTemplate('clear');
+			}
 		}else{
-			$this->disk_assoc['']='';
-		}
-		
-		
-		//
-		if($request->getParameter('associate_submit')){
-			$this->getUser()->setAttribute('program_group_is_associate',true);				
-		}
-		//
-		if($request->getParameter('clear_program_associate')){
-			$this->getUser()->setAttribute('program_group_is_clear',true);	
-		}
-		//
-		if($request->getParameter('clone_now')){
-			$this->getUser()->setAttribute('clone_group_is_now',true);				
-		}
-		//
-		if($this->getUser()->getAttribute('program_group_is_associate')){	
-			$this->setTemplate('associate');
-		}
-		//
-		if($this->getUser()->getAttribute('clone_group_is_now')){
-			$this->setTemplate('now');
-		}
-		if($this->getUser()->getAttribute('program_group_is_clear')){	
-			$this->setTemplate('clear');
-		}
+			$this->setTemplate('no_pc_in_the_group');
+		}	
 	}else{
 		$this->setTemplate('no_select_group');
 	}	

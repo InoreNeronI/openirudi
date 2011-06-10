@@ -21,7 +21,6 @@
 									<tr>
 										<td><?php echo $pcgroup->getName();?></td>
 										<td>&nbsp;</td>
-										<td><?php echo select_tag('oiimages_id['.$pcgroup->getId().'-]', options_for_select($oiimages_assoc));?></td>
 										<?php //gemini 2011-02-15 class='my_style'?>
 										<td><?php echo select_tag('oiimages_id['.$pcgroup->getId().'-]', options_for_select($oiimages_assoc),array('class'=>'my_style'));?></td>
 									</tr>

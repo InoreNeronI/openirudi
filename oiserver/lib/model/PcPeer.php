@@ -79,6 +79,7 @@ class PcPeer extends BasePcPeer
 		if(count($pc_list)>0){
 			foreach($pc_list as $i=>$pc){				
 				$partition_list=$pc->get_partition_list();
+				//echo print_r($partition_list,1);exit();
 				$result[$pc->getId()]=self::prepare_partition_list($partition_list);
 			}
 		}
@@ -92,16 +93,19 @@ class PcPeer extends BasePcPeer
 			$kont=0;
 			foreach($partition_list as $i=>$p){
 				//gaur
+				/*echo print_r($p,1);
+				echo $i.'='.$p['fstype'].'<BR>';*/				
 				if($i!='disks'){				
-				//	
+				//						
 					if($p['fstype']!='oiSystem'){
+						
 						$result[$kont]=$p;
 						$kont++;
 					}
 				}
 			}
 		}
-
+	//exit();
 		return $result;
 	}	
 }

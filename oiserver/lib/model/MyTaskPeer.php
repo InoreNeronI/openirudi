@@ -294,7 +294,7 @@ class MyTaskPeer extends BaseMyTaskPeer
 		//zaharrak ezkutatu
 		if(!self::is_day_filter()){		
 			$or1=$criteria->getNewCriterion(self::DAY,null,Criteria::ISNULL);
-			$or2=$criteria->getNewCriterion(self::DAY,date('Y-m-d'),Criteria::GREATER_THAN);
+			$or2=$criteria->getNewCriterion(self::DAY,date('Y-m-d'),Criteria::GREATER_EQUAL);
 			$or1->addOr($or2);
 			$criteria->add($or1);
 		}	

@@ -22,7 +22,6 @@
 									<tr>
 										<td><?php echo $pc->getName().' ('.$pc->getIp().')'?></td>
 										<td>&nbsp;</td>
-										<td><?php echo select_tag('oiimages_id['.$pc->getId().'-]', options_for_select($oiimages_assoc));?></td>
 										<?php //gemini 2011-02-15 class='my_style'?>
 										<td><?php echo select_tag('oiimages_id['.$pc->getId().'-]', options_for_select($oiimages_assoc),array('class'=>'my_style'));?></td>
 									</tr>
