@@ -1,5 +1,5 @@
 <div>
-<table class="table_better_task_actions">
+<table class="table_better_task_actions">a
 	<tr>
 		<td>
 			<input type="submit" id="program" name="program" value="<?php echo __('Program clonation',array(),'messages')?>">
