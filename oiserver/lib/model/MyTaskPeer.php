@@ -2,16 +2,34 @@
 
 class MyTaskPeer extends BaseMyTaskPeer
 {
-	public static function make_hour($my_array){
-		$h=(string) $my_array['hour'];
-		if(strlen($h)<2){
-			$h='0'.$h;
-		}
-		$m=(string) $my_array['minute'];
-		if(strlen($m)<2){
-			$m='0'.$m;
-		}
-		return $h.':'.$m.':00';
+	public static function make_hour($my_array,$is_filter=0){
+		if($is_filter){
+			$h=(string) $my_array['hour'];
+			if(strlen($h)==0){
+				return '';
+			}
+			if(strlen($m)==0){
+				return '';
+			}	
+		}else{	
+			$h=(string) $my_array['hour'];
+			if(strlen($h)<2){
+				if(strlen($h)==0){
+					$h='00';
+				}else{
+					$h='0'.$h;
+				}	
+			}
+			$m=(string) $my_array['minute'];
+			if(strlen($m)<2){
+				if(strlen($m)==0){
+					$m='00';
+				}else{
+					$m='0'.$m;
+				}	
+			}			
+			return $h.':'.$m.':00';
+		}	
 	}
 	public static function make_day($day){
 		$cfg=$day;
@@ -256,15 +274,16 @@ class MyTaskPeer extends BaseMyTaskPeer
 
 		$my_task_hour_filter=sfContext::getInstance()->getUser()->getAttribute('my_task_hour_filter');	
 	  	if(isset($my_task_hour_filter['from'])){
-			$from_hour=self::make_hour($my_task_hour_filter['from']);
+			$from_hour=self::make_hour($my_task_hour_filter['from'],1);
 			$to_hour='';
 			if(isset($my_task_hour_filter['to'])){
-				$to_hour=self::make_hour($my_task_hour_filter['to']);
+				$to_hour=self::make_hour($my_task_hour_filter['to'],1);
 			}
 			if(!empty($from_hour)){
-				if(empty($to_hour)){
+				//echo $from_hour;exit();		
+				if(empty($to_hour)){								
 					$criteria->add(self::HOUR,$from_hour,Criteria::GREATER_EQUAL);
-				}else{
+				}else{					
 					$and1=$criteria->getNewCriterion(self::HOUR,$from_hour,Criteria::GREATER_EQUAL);
 					$and2=$criteria->getNewCriterion(self::HOUR,$to_hour,Criteria::LESS_EQUAL);
 					$and1->addAnd($and2);
@@ -272,8 +291,15 @@ class MyTaskPeer extends BaseMyTaskPeer
 				}
 			}
 		}
-		
-
+		//zaharrak ezkutatu
+		if(!self::is_day_filter()){		
+			$or1=$criteria->getNewCriterion(self::DAY,null,Criteria::ISNULL);
+			$or2=$criteria->getNewCriterion(self::DAY,date('Y-m-d'),Criteria::GREATER_THAN);
+			$or1->addOr($or2);
+			$criteria->add($or1);
+		}	
+		//
+//echo print_r($criteria,1);exit();
 		return $criteria;
     }
 	//gaur
@@ -296,5 +322,56 @@ class MyTaskPeer extends BaseMyTaskPeer
 			}
 		}
 		return $result;
+	}
+	//kam
+	public static function delete_my_task_by_pcgroup_id($pcgroup_id){
+		$pc_id_array=self::get_pc_id_array_by_group_id($pcgroup_id);		
+		if(count($pc_id_array)>0){
+			//echo print_r($pc_id_array,1);exit();		
+			self::delete_my_task_by_pc_id_array($pc_id_array);
+		}
+	}
+	//kam
+	public static function get_pc_id_array_by_group_id($pcgroup_id){
+		$pc_id_array=array();
+		$pc_list=PcgroupPeer::get_pc_list($pcgroup_id);
+		if(count($pc_list)>0){
+			foreach($pc_list as $i=>$pc){
+				$pc_id_array[]=$pc->getId();
+			}
+		}
+		return $pc_id_array;
+	}	
+	//kam
+	public static function delete_my_task_group_partition($oiimages_id_array){		
+		if(count($oiimages_id_array)>0){
+			foreach($oiimages_id_array as $key=>$oiimages_id){
+				$key_array=explode('-',$key);
+				$pcgroup_id=$key_array[0];
+				$partition=$key_array[1];
+				if(!empty($oiimages_id)){					
+					$pc_id_array=self::get_pc_id_array_by_group_id($pcgroup_id);
+					if(count($pc_id_array)>0){
+						//echo print_r($pc_id_array,1);exit();
+						foreach($pc_id_array as $i=>$pc_id){
+							//echo $pc_id.'----'.$partition;exit();							
+							self::delete_my_task_pc_and_partition($pc_id,$partition);
+						}
+					}		
+				}
+			}
+		}
+	}
+	private static function is_day_filter(){
+		$my_filters=sfContext::getInstance()->getUser()->getAttribute('my_task.filters', array(), 'admin_module');
+		if(isset($my_filters['day'])){			
+			if(isset($my_filters['day']['from']) && !empty($my_filters['day']['from'])){
+				return 1;
+			}
+			if(isset($my_filters['day']['to']) && !empty($my_filters['day']['to'])){
+				return 1;
+			}
+		}
+		return 0;
 	}		
 }

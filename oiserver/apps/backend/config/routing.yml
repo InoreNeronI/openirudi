@@ -31,29 +31,57 @@ my_task:
     with_wildcard_routes: true
 
 my_task_program:
-  url:    /:sf_culture/program
+  url:    /:sf_culture/:module/program
   param: { module: my_task, action: program }
   requirements: { sf_culture: (?:eu|es|en) }
 
 my_task_program_save:
-  url:    /:sf_culture/program_save
+  url:    /:sf_culture/:module/program_save
   param: { module: my_task, action: program_save }
   requirements: { sf_culture: (?:eu|es|en) }
 
 my_task_associate_save:
-  url:    /:sf_culture/associate_save
+  url:    /:sf_culture/:module/associate_save
   param: { module: my_task, action: associate_save }
   requirements: { sf_culture: (?:eu|es|en) }
 
 my_task_clear_confirm:
-  url:    /:sf_culture/clear_confirm
+  url:    /:sf_culture/:module/clear_confirm
   param: { module: my_task, action: clear_confirm }
   requirements: { sf_culture: (?:eu|es|en) }
 
 my_task_now_save:
-  url:    /:sf_culture/now_save
+  url:    /:sf_culture/:module/now_save
   param: { module: my_task, action: now_save }
   requirements: { sf_culture: (?:eu|es|en) }
+
+#############################my_task_group INI##################
+my_task_group_program:
+  url:    /:sf_culture/:module/program
+  param: { module: my_task_group, action: program }
+  requirements: { sf_culture: (?:eu|es|en) }
+
+my_task_group_program_save:
+  url:    /:sf_culture/:module/program_save
+  param: { module: my_task_group, action: program_save }
+  requirements: { sf_culture: (?:eu|es|en) }
+  
+my_task_group_associate_save:
+  url:    /:sf_culture/:module/associate_save
+  param: { module: my_task_group, action: associate_save }
+  requirements: { sf_culture: (?:eu|es|en) }
+  
+my_task_group_now_save:
+  url:    /:sf_culture/:module/now_save
+  param: { module: my_task_group, action: now_save }
+  requirements: { sf_culture: (?:eu|es|en) }
+  
+my_task_group_clear_confirm:
+  url:    /:sf_culture/:module/clear_confirm
+  param: { module: my_task_group, action: clear_confirm }
+  requirements: { sf_culture: (?:eu|es|en) }      
+
+#############################my_task_group END##################
 
 trans_unit:
   class: sfPropelRouteCollection

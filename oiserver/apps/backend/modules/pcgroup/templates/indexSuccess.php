@@ -1,6 +1,7 @@
 <?php use_helper('I18N', 'Date') ?>
 <?php include_partial('pcgroup/assets') ?>
 <?php include_partial('global/filter_js') ?>
+<?php include_partial('pcgroup/txek_js',array('group_id_js_array'=>$group_id_js_array)) ?>
 
 <div id="sf_admin_container">
   <h1 style="float:left"><?php echo __('Pcgroup List', array(), 'messages') ?></h1>

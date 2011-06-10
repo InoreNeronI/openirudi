@@ -13,4 +13,24 @@ require_once dirname(__FILE__).'/../lib/pcgroupGeneratorHelper.class.php';
  */
 class pcgroupActions extends autoPcgroupActions
 {
+  //kam
+  public function executeIndex(sfWebRequest $request)
+  {	
+	parent::executeIndex($request);
+	$this->group_id_js_array=$this->get_group_id_js_array();
+  }
+  //kam
+  private function get_group_id_js_array(){
+	$result=array();
+	
+	//if ($this->$pager->getNbResults()):
+
+	if($this->pager->getNbResults()>0){
+		foreach ($this->pager->getResults() as $i => $group){
+			$result[]=$group->getId();
+		}
+	}
+
+	return implode(',',$result);	
+  }	
 }

@@ -1,3 +1,1 @@
-<?php use_helper('I18N') ?>
-
-<p><?php echo __("Clear executed") ?></p>
+<?php include_partial('global/clear_executed')?>
