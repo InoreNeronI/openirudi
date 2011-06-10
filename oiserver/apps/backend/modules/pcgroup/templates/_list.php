@@ -1,4 +1,4 @@
-<div class="sf_admin_list">a
+<div class="sf_admin_list">
   <?php if (!$pager->getNbResults()): ?>
     <p><?php echo __('No result', array(), 'sf_admin') ?></p>
   <?php else: ?>
