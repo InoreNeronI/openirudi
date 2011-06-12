@@ -12,10 +12,8 @@ all:
     param:
       classname: PropelPDO
       dsn: 'mysql:dbname=openirudiDB;host=localhost;unix_socket=/var/run/mysqld/mysqld.sock'
-      #username: openirudi
-      #password: openirudi
-      username: root
-      password: 
+      username: openirudi
+      password: openirudi
       encoding: utf8
       persistent: true
       pooling: true

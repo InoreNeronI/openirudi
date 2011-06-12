@@ -35,8 +35,7 @@ all:
     class: sfI18N
     param:
       source:               MySQL
-      #database: mysql://openirudi:openirudi@localhost/openirudiDB
-      database: mysql://root@localhost/openirudiDB      
+      database: mysql://openirudi:openirudi@localhost/openirudiDB
       debug:                on
       untranslated_prefix:  "["
       untranslated_suffix:  "]"
