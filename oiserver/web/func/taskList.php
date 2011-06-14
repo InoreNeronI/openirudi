@@ -1,7 +1,7 @@
 <?php
 require_once('dbcon.php');
 
-define('_MAXDELTASEC',120);
+define('_MAXDELTASEC',300);
 
 
 function taskListImages($hddid) {

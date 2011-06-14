@@ -6,7 +6,7 @@
  *
  *
  */
-define('_MAXDELTASEC',120);
+define('_MAXDELTASEC',300);
 
 function pcListToWakeUp(){
     $day=date('Y-m-d');
@@ -72,6 +72,7 @@ function WakeOnLan($mac,$addr=false,$port=7) {
          for ($i=0;$i<count($ret);$i++){
              if ($ret[$i]!==false){
                  $last_ret=WakeOnLan($mac,$ret[$i],$port);
+                 sleep(1);
              }
          }
          return($last_ret);
@@ -139,6 +140,6 @@ if(is_array($macList) && count($macList)>0){
 }
 
 //$macList=array('00:05:5D:7B:1E:F6');
-echo "<br>aaaa2aaaa: ". print_r($macList);
+//echo "<br>aaaa2aaaa: ". print_r($macList);
 
 ?>

@@ -1,7 +1,7 @@
 <?
 require_once('dbcon.php');
 
-define('_MAXDELTASEC',180);
+define('_MAXDELTASEC',300);
 define('HEX2BIN_WS', " \t\n\r");
 define('_PWD','sjdlaksjda90qwñaslkdSS');
 
@@ -63,16 +63,12 @@ function pendingTask($mac){
         exit;
     }
 
-    $t=array();
     while ($row = mysql_fetch_assoc($result)) {
         if ($row['mac'] == $mac){
                 return true;
-        } else {
-                return false;
         }
     }
-
-    return $t;
+    return false;
 }
 
 ?>
