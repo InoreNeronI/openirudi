@@ -158,18 +158,17 @@ downloadLastClient(){
         exit 1
     fi
 
-    LASTURL=$(cat $APPYML |grep lastClient: |awk '{print $2}' |tr -d "'" )
+    LASTURL=$(cat $APPYML |grep lastClient: |grep -v '#' |awk '{print $2}' |tr -d "'" )
     LASTCLIENTV="$(wget -O /tmp/last.txt $LASTURL &>/dev/null )"
     if [ $? != 0 ]
     then
         echo "We can't connect and download Openirudi client from ${LASTURL}"
         exit 1
     fi
-    LASTCLIENT="$(cat /tmp/last.txt |awk 'BEGIN { FS = "@@@" } ; {print $2}' )"
+    LASTCLIENT="$(cat /tmp/last.txt |grep -v '#'|awk 'BEGIN { FS = "@@@" } ; {print $2}' )"
 
     ISOPATH=" ${WPATH}/$(cat $APPYML |grep isopath: |awk '{print $2}' |tr -d "'" )"
     CLIENTPATH=" ${WPATH}/$(cat $APPYML |grep clientpath: |awk '{print $2}' |tr -d "'")"
-
 
     ${WPATH}/bin/oiserver.sh update $LASTCLIENT $CLIENTPATH $ISOPATH
 }
@@ -185,21 +184,24 @@ moveFiles(){
 
 }
 
-moveNewFiles(){
+moveUpdateFiles(){
     
     BWPATH="${WPATH}_old"
+    echo
     echo "We make backup in ${BWPATH}"
+    echo
 
-    mv -b ${WPATH} "${BWPATH}"
+    mv -b ${WPATH} ${BWPATH}
     if [ $? != 0 ]
     then
         echo "We found errors making backup file"
         exit 1
     fi
+    cp -a ${RPATH}  ${WPATH}
 
-    cp ${WPATH}/config/databases.yml  ${WPATH}/config/databases.yml
-    cp ${WPATH}/apps/backend/config/factories.yml  ${WPATH}/apps/backend/config/factories.yml
-    cp ${WPATH}/web/func/dbcon.php  ${WPATH}/web/func/dbcon.php
+    cp ${BWPATH}/config/databases.yml  ${WPATH}/config/databases.yml
+    cp ${BWPATH}/apps/backend/config/factories.yml  ${WPATH}/apps/backend/config/factories.yml
+    cp ${BWPATH}/web/func/dbcon.php  ${WPATH}/web/func/dbcon.php
 
 
     symfonyInit
@@ -292,7 +294,7 @@ set +e
 RPATH="./oiserver"
 
 echo -e "\nOPENIRUDI SERVER NEW INSTALLATION OR UPDATE\n"
-echo "Would you like to continue? (yes/NO)"
+echo "Would you like to continue? ( yes/[NO] )"
 read CONTINUE
 
 if [ "$CONTINUE" != "yes" ]
@@ -314,7 +316,7 @@ fi
 ROOTUSER=''
 ROOTPWD=''
 
-echo "*which genisoimage?"
+#echo "*which genisoimage?"
 GENISOIMAGE=$(which genisoimage)
 if [ $? != 0 ]
 then
@@ -323,7 +325,7 @@ then
   exit 1
 fi
 
-echo "which mysql?"
+#echo "which mysql?"
 GENISOIMAGE=$(which mysql)
 if [ $? != 0 ]
 then
@@ -332,7 +334,7 @@ then
   exit 1
 fi
 
-echo "which sudo?"
+#echo "which sudo?"
 SUDO=$(which sudo)
 if [ $? != 0 ]
 then
@@ -342,7 +344,7 @@ then
 fi
 
 
-echo "which php?"
+#echo "which php?"
 PHP=$(which php)
 if [ $? != 0 ]
 then
@@ -352,7 +354,7 @@ then
   exit 1
 fi
 
-echo "which apache?"
+#echo "which apache?"
 WEB=$(wget -O /dev/null http://localhost &>/dev/null)
 if [ $? != 0 ]
 then
@@ -380,11 +382,13 @@ fi
 
 WPATH=$(echo "${WPATH}/oiserver" |tr -s '/' )
 
-UPDATE='no'
-if [ -d "WPATH" ]
+UPDATE='NO'
+if [ -d "${WPATH}" ]
 then
-    echo "It seens you have to oiserver installed"
-    echo "Do you want update your oiserver? y [${UPDATE}/yes]"
+    echo
+    echo
+    echo "It seens you have oiserver installed"
+    echo "Do you want update your oiserver? [${UPDATE}]/yes"
     read BUF
     if [ -n "$BUF" ]
     then
@@ -403,53 +407,52 @@ then
 fi
 
 
-
-DB='openirudiDB'
-echo -e "\nDatabase name: [${DB}]"
-read BUF
-if [ -n "$BUF" ]
-then
-  DB="$BUF"
-fi
-
-DBUSER='openirudi'
-echo -e "${DB} database username: [${DBUSER}]"
-read BUF
-if [ -n "$BUF" ]
-then
-  DBUSER="$BUF"
-fi
-
-DBPWD='openirudi'
-echo -e "${DBUSER} user password for ${DB}?"
-
-trap "stty echo ; exit" 1 2 15
-stty -echo
-read BUF
-stty echo
-trap "" 1 2 15
-
-if [ -n "$BUF" ]
-then
-  DBPWD="$BUF"
-fi
-
-set +e
-RES=$(echo "SHOW DATABASES;  " | mysql -h localhost -u$DBUSER -p$DBPWD &>/dev/null )
-if [ $? != 0 ]
-then
-  echo -e "\nI can't query DB. May be \"${DBUSER}\" not exists yet."
-fi
-set -e
-
-
- if [ "$UPDATE" != "yes" ]
+ if [ "$UPDATE" = "yes" ]
 then
         echo
         echo "*Move new files"
-        moveNewFiles
+        moveUpdateFiles
 
 else
+
+        DB='openirudiDB'
+        echo -e "\nDatabase name: [${DB}]"
+        read BUF
+        if [ -n "$BUF" ]
+        then
+          DB="$BUF"
+        fi
+
+        DBUSER='openirudi'
+        echo -e "${DB} database username: [${DBUSER}]"
+        read BUF
+        if [ -n "$BUF" ]
+        then
+          DBUSER="$BUF"
+        fi
+
+        DBPWD='openirudi'
+        echo -e "${DBUSER} user password for ${DB}?"
+
+        trap "stty echo ; exit" 1 2 15
+        stty -echo
+        read BUF
+        stty echo
+        trap "" 1 2 15
+
+        if [ -n "$BUF" ]
+        then
+          DBPWD="$BUF"
+        fi
+
+        set +e
+        RES=$(echo "SHOW DATABASES;  " | mysql -h localhost -u$DBUSER -p$DBPWD &>/dev/null )
+        if [ $? != 0 ]
+        then
+          echo -e "\nI can't query DB. May be \"${DBUSER}\" not exists yet."
+        fi
+        set -e
+
         echo
         echo "*Create database"
         createDB
@@ -475,14 +478,15 @@ else
         addCron
 
         echo
+        echo "*Move files"
+        moveFiles
+
+        echo
         echo "*Downloading lastest Openirudi client"
         downloadLastClient
 
 
-        echo
-        echo "*Move files"
-        moveFiles
-
+        
 
         echo -e "\n\n\n"
         echo "*** Important: You need SSH and TFTP servers running to enjoy properly from Openirudi. ***"
@@ -521,4 +525,7 @@ else
         pass: admin"
 fi
 
+echo
+echo
 echo "Enjoy!"
+echo
