@@ -42,7 +42,6 @@ createDB(){
       fi
     fi
 
-
     set -e
 }
 
@@ -186,6 +185,27 @@ moveFiles(){
 
 }
 
+moveNewFiles(){
+    
+    BWPATH="${WPATH}_old"
+    echo "We make backup in ${BWPATH}"
+
+    mv -b ${WPATH} "${BWPATH}"
+    if [ $? != 0 ]
+    then
+        echo "We found errors making backup file"
+        exit 1
+    fi
+
+    cp ${WPATH}/config/databases.yml  ${WPATH}/config/databases.yml
+    cp ${WPATH}/apps/backend/config/factories.yml  ${WPATH}/apps/backend/config/factories.yml
+    cp ${WPATH}/web/func/dbcon.php  ${WPATH}/web/func/dbcon.php
+
+
+    symfonyInit
+
+}
+
 symfonyInit(){
 
     $WPATH/symfony cc
@@ -202,7 +222,7 @@ parseDBuser(){
       rm /tmp/d1.yml
     fi
 
-    #${WPATH}/oiserver/config/databases.yml
+    #${WPATH}/config/databases.yml
     #dsn: 'mysql:dbname=drivers;host=localhost;unix_socket=/var/run/mysqld/mysqld.sock'
     #username: openirudi
     #password: openirudi
@@ -219,7 +239,7 @@ parseDBuser(){
     fi
 
 
-    #$WPATH/oiserver/apps/backend/config/
+    #$WPATH/apps/backend/config/
     #  database: mysql://openirudi:openirudi@localhost/drivers
 
     cat ${WPATH}/apps/backend/config/factories.yml |sed "s/mysql\:\/\/.*$/mysql\:\/\/${DBUSER}:${DBPWD}@localhost\/${DB}/" > /tmp/d1.yml
@@ -271,7 +291,7 @@ set +e
 
 RPATH="./oiserver"
 
-echo -e "\nOPENIRUDI SERVER INSTALLATION\n"
+echo -e "\nOPENIRUDI SERVER NEW INSTALLATION OR UPDATE\n"
 echo "Would you like to continue? (yes/NO)"
 read CONTINUE
 
@@ -283,7 +303,6 @@ then
   exit
 fi
 
-echo "path berria"
 INSTALLER=$0
 IPATH=$(dirname "${INSTALLER}");
 if [ "$(pwd )" != "${IPATH}" ]
@@ -295,7 +314,7 @@ fi
 ROOTUSER=''
 ROOTPWD=''
 
-echo "ea genisoimage badagoen"
+echo "*which genisoimage?"
 GENISOIMAGE=$(which genisoimage)
 if [ $? != 0 ]
 then
@@ -304,7 +323,7 @@ then
   exit 1
 fi
 
-echo "ea mysql badagoen"
+echo "which mysql?"
 GENISOIMAGE=$(which mysql)
 if [ $? != 0 ]
 then
@@ -313,28 +332,27 @@ then
   exit 1
 fi
 
-echo "ea sudo badagoen"
+echo "which sudo?"
 SUDO=$(which sudo)
 if [ $? != 0 ]
 then
-  echo -e "\nOpenIrudi's sever needs \"sudo\" to execute oiserver.sh. Install "sudo" and run installer again!"
+  echo -e "\nOpenIrudi's server needs \"sudo\" to execute oiserver.sh. Install "sudo" and run installer again!"
   echo
   exit 1
 fi
 
 
-echo "ea php badagoen"
+echo "which php?"
 PHP=$(which php)
 if [ $? != 0 ]
 then
   echo "php not present!"
-  echo "You need php5-cli"
+  echo "You need php5-cli and php-mcrypt"
   echo
   exit 1
 fi
 
-echo "ea apache martxan dagoen"
-
+echo "which apache?"
 WEB=$(wget -O /dev/null http://localhost &>/dev/null)
 if [ $? != 0 ]
 then
@@ -346,6 +364,7 @@ fi
 
 WPATH='/var/www/'
 echo -e "\nInstallation path: [${WPATH}]"
+echo "If we found oiserver there you can update it"
 read BUF
 if [ -n "$BUF" ]
 then
@@ -359,7 +378,30 @@ then
     exit 1
 fi
 
-WPATH="${WPATH}oiserver"
+WPATH=$(echo "${WPATH}/oiserver" |tr -s '/' )
+
+UPDATE='no'
+if [ -d "WPATH" ]
+then
+    echo "It seens you have to oiserver installed"
+    echo "Do you want update your oiserver? y [${UPDATE}/yes]"
+    read BUF
+    if [ -n "$BUF" ]
+    then
+      UPDATE="$BUF"
+    fi
+
+    if [ "$UPDATE" != "yes" ]
+    then
+      echo "If you want new \"oiserver\" installation, move \"oiserver\" from ${WPATH}"
+      echo "Abort Openirudi Installation"
+      echo "Agur benur eta jan yogurth..."
+      echo
+      exit
+    fi
+
+fi
+
 
 
 DB='openirudiDB'
@@ -401,74 +443,82 @@ fi
 set -e
 
 
-echo
-echo "*Create database"
-createDB
-
-echo
-echo "*Create database user"
-createDBUser
-
-echo
-echo "*Create system user"
-createUser
-
-echo
-echo "*Import database content"
-importDB
-
-echo
-echo "*Move files"
-moveFiles
-
-echo
-echo "*Add new entry in sudoers file"
-addSudo
-
-echo
-echo "*Add new job to crontab"
-addCron
-
-echo
-echo "*Downloading lastest Openirudi client"
-downloadLastClient
-
-
-echo -e "\n\n\n"
-echo "*** Important: You need SSH and TFTP servers running to enjoy properly from Openirudi. ***"
-
-echo "Checking if ssh server is present."
-if [ -z "$(netstat -lnpt 2>&1 |grep tcp|grep ':22' )" ]
+ if [ "$UPDATE" != "yes" ]
 then
-    echo "You don't have SSH sever installed or is not running."
-    echo "(Debian or Ubuntu) install it with the following command \"apt-get install ssh\""
+        echo
+        echo "*Move new files"
+        moveNewFiles
+
 else
-    echo "ssh sever is running"
+        echo
+        echo "*Create database"
+        createDB
+
+        echo
+        echo "*Create database user"
+        createDBUser
+
+        echo
+        echo "*Create system user"
+        createUser
+
+        echo
+        echo "*Import database content"
+        importDB
+
+        echo
+        echo "*Add new entry in sudoers file"
+        addSudo
+
+        echo
+        echo "*Add new job to crontab"
+        addCron
+
+        echo
+        echo "*Downloading lastest Openirudi client"
+        downloadLastClient
+
+
+        echo
+        echo "*Move files"
+        moveFiles
+
+
+        echo -e "\n\n\n"
+        echo "*** Important: You need SSH and TFTP servers running to enjoy properly from Openirudi. ***"
+
+        echo "Checking if ssh server is present."
+        if [ -z "$(netstat -lnpt 2>&1 |grep tcp|grep ':22' )" ]
+        then
+            echo "You don't have SSH sever installed or is not running."
+            echo "(Debian or Ubuntu) install it with the following command \"apt-get install ssh\""
+        else
+            echo "ssh sever is running"
+        fi
+
+
+        echo -e "\n\n\n"
+
+        echo "Checking if tftp server is present."
+        if [ -z "$(netstat -lnpu 2>&1 |grep udp|grep ':69' )" ]
+        then
+            echo "You don't have tftp sever installed, runnig or you didn't configure properly."
+            echo "(Debian or Ubuntu) install it with the following command \"apt-get install atftpd\""
+        else
+            echo "tftp sever is running"
+        fi
+
+        echo "*** Remember to configure \"${WPATH}/web/func/root\"  as tftp server path. ****"
+
+        echo -e "\n\n\n"
+
+
+
+        echo "Openirudi's server is sucesfully installed. Don't forget to configure your tftp server"
+
+        echo "You can start managing Openirudi via web from: http://localhost/oiserver
+        user: admin
+        pass: admin"
 fi
-
-
-echo -e "\n\n\n"
-
-echo "Checking if tftp server is present."
-if [ -z "$(netstat -lnpu 2>&1 |grep udp|grep ':69' )" ]
-then
-    echo "You don't have tftp sever installed, runnig or you didn't configure properly."
-    echo "(Debian or Ubuntu) install it with the following command \"apt-get install atftpd\""
-else
-    echo "tftp sever is running"
-fi
-
-echo "*** Remember to configure \"${WPATH}/web/func/root\"  as tftp server path. ****"
-
-echo -e "\n\n\n"
-
-
-
-echo "Openirudi's server is sucesfully installed. Don't forget to configure your tftp server"
-
-echo "You can start managing Openirudi via web from: http://localhost/oiserver
-user: admin
-pass: admin"
-
 
 echo "Enjoy!"
