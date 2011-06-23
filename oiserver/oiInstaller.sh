@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## oiInstaller.sh
-## Script de instalación del servidor de Openirudi
+## Script de instalación/actualización de oiServer
 
 createDB(){
 
@@ -188,13 +188,13 @@ moveUpdateFiles(){
     
     BWPATH="${WPATH}_old"
     echo
-    echo "We make backup in ${BWPATH}"
+    echo "Creating backup in ${BWPATH}"
     echo
 
     mv -b ${WPATH} ${BWPATH}
     if [ $? != 0 ]
     then
-        echo "We found errors making backup file"
+        echo "ERROR: There was a problem creating the backup!"
         exit 1
     fi
     cp -a ${RPATH}  ${WPATH}
@@ -271,7 +271,7 @@ parseDBuser(){
 
 createUser(){
 
-    echo "Creating an ssh user on server size, please wait... we need this user for images upload/download tasks"
+    echo "Creating an ssh user on the server, please wait... we need this user for uploading/downloading images"
     set +e
     if [ -n "$(id openirudi)" ]
     then
@@ -366,7 +366,7 @@ fi
 
 WPATH='/var/www/'
 echo -e "\nInstallation path: [${WPATH}]"
-echo "If we found oiserver there you can update it"
+echo "We'll check for a previous installation, in this case we'll update it"
 read BUF
 if [ -n "$BUF" ]
 then
@@ -387,8 +387,8 @@ if [ -d "${WPATH}" ]
 then
     echo
     echo
-    echo "It seens you have oiserver installed"
-    echo "Do you want update your oiserver? [${UPDATE}]/yes"
+    echo "We found oiserver installed:"
+    echo "Do you want to update it? [${UPDATE}]/yes"
     read BUF
     if [ -n "$BUF" ]
     then
