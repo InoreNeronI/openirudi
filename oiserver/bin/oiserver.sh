@@ -111,7 +111,7 @@ genOpenirudiIso(){
     MENU_ISO="kbdmap es.kbd
  	label openirudi
  		kernel /boot/bzImage
- 		append initrd=/boot/rootfs.gz rw root=/dev/null vga=normal screen=800x600x24 lang=es_ES kmap=es sound=noconf user=root autologin server=${4} user=${5} password=${6} type=${7} ip=${8} netmask=${9} gateway=${10} dns1=${11} dns2=${12}
+ 		append initrd=/boot/rootfs.gz rw root=/dev/null vga=normal screen=800x600x24  kmap=es sound=noconf user=root autologin server=${4} user=${5} password=${6} type=${7} ip=${8} netmask=${9} gateway=${10} dns1=${11} dns2=${12} es
  	implicit 0
  	prompt 1
  	timeout 2
