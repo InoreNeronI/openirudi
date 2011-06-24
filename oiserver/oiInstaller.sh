@@ -280,7 +280,7 @@ createUser(){
         then
           echo
           echo
-          echo "ERROR !! We have problems creating a openirudi user in your system. Execute next command to create it.
+          echo "ERROR !! We have problems creating a openirudi user in your system. Execute next command to create it."
           echo "useradd  -m -c \"Openirudi client user\" openirudi"
           echo 
           echo 
