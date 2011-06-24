@@ -273,9 +273,18 @@ createUser(){
 
     echo "Creating an ssh user on the server, please wait... we need this user for uploading/downloading images"
     set +e
-    if [ -n "$(id openirudi)" ]
+    if [ -n "$(id openirudi| grep "uid=" )" ] || [ ! -d /home/openirudi ]
     then
-        useradd  -m -c "Openirudi client user" openirudi
+        R=$(useradd  -m -c "Openirudi client user" openirudi)
+        if [ $? != 0 ]
+        then
+          echo
+          echo
+          echo "ERROR !! We have problems creating a openirudi user in your system. Execute next command to create it.
+          echo "useradd  -m -c \"Openirudi client user\" openirudi"
+          echo 
+          echo 
+        fi
     fi
     set -e
 
