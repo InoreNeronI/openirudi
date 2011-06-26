@@ -202,6 +202,9 @@ moveUpdateFiles(){
     cp ${BWPATH}/config/databases.yml  ${WPATH}/config/databases.yml
     cp ${BWPATH}/apps/backend/config/factories.yml  ${WPATH}/apps/backend/config/factories.yml
     cp ${BWPATH}/web/func/dbcon.php  ${WPATH}/web/func/dbcon.php
+    cp -a ${BWPATH}/client/*  ${WPATH}/client/
+    cp ${BWPATH}/web/func/root/openirudi.iso ${WPATH}/web/func/root/openirudi.iso
+    cp ${BWPATH}/web/func/root/boot/* ${WPATH}/web/func/root/boot/
 
 
     symfonyInit
@@ -418,9 +421,22 @@ fi
 
  if [ "$UPDATE" = "yes" ]
 then
+echo
+        echo "*Add new entry in sudoers file"
+        addSudo
+
+        echo
+        echo "*Add new job to crontab"
+        addCron
+
+        echo
+        echo "*Create system user"
+        createUser
+
         echo
         echo "*Move new files"
         moveUpdateFiles
+
 
 else
 
