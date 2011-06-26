@@ -202,10 +202,17 @@ moveUpdateFiles(){
     cp ${BWPATH}/config/databases.yml  ${WPATH}/config/databases.yml
     cp ${BWPATH}/apps/backend/config/factories.yml  ${WPATH}/apps/backend/config/factories.yml
     cp ${BWPATH}/web/func/dbcon.php  ${WPATH}/web/func/dbcon.php
-    cp -a ${BWPATH}/client/*  ${WPATH}/client/
-    cp ${BWPATH}/web/func/root/openirudi.iso ${WPATH}/web/func/root/openirudi.iso
-    cp ${BWPATH}/web/func/root/boot/* ${WPATH}/web/func/root/boot/
 
+    if [ -d ${BWPATH}/client/rootcd ]
+    then
+        cp -a ${BWPATH}/client/*  ${WPATH}/client/
+    fi
+
+    if [ -f ${BWPATH}/web/func/root/openirudi.iso ]
+    then
+        cp ${BWPATH}/web/func/root/openirudi.iso ${WPATH}/web/func/root/openirudi.iso
+        cp ${BWPATH}/web/func/root/boot/* ${WPATH}/web/func/root/boot/
+    fi
 
     symfonyInit
 
@@ -281,12 +288,13 @@ createUser(){
         R=$(useradd  -m -c "Openirudi client user" openirudi)
         if [ $? != 0 ]
         then
-          echo
-          echo
-          echo "ERROR !! We have problems creating a openirudi user in your system. Execute next command to create it."
-          echo "useradd  -m -c \"Openirudi client user\" openirudi"
-          echo 
-          echo 
+          WARNING_USER='
+          
+          ERROR !! We have problems creating a openirudi user in your system. Execute next command to create it:
+          "useradd  -m -c \"Openirudi client user\" openirudi"
+          
+          ';
+           
         fi
     fi
     set -e
@@ -304,6 +312,7 @@ createUser(){
 set +e
 
 RPATH="./oiserver"
+WARNING_USER=''
 
 echo -e "\nOPENIRUDI SERVER NEW INSTALLATION OR UPDATE\n"
 echo "Would you like to continue? ( yes/[NO] )"
@@ -367,8 +376,8 @@ then
 fi
 
 #echo "which apache?"
-WEB=$(wget -O /dev/null http://localhost &>/dev/null)
-if [ $? != 0 ]
+R=$( netstat -lnpt |grep :80 )
+if [ $? != 0 ] || [ -z "$R" ]
 then
   echo "ERROR: Web server not present!"
   echo "We couldn't find http://localhost in your server"
@@ -550,6 +559,7 @@ else
         pass: admin"
 fi
 
+echo "$WARNING_USER"
 echo
 echo
 echo "Enjoy!"
