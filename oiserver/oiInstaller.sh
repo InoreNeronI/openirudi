@@ -276,7 +276,7 @@ createUser(){
 
     echo "Creating an ssh user on the server, please wait... we need this user for uploading/downloading images"
     set +e
-    if [ -n "$(id openirudi| grep "uid=" )" ] || [ ! -d /home/openirudi ]
+    if [ -z "$(id openirudi| grep "uid=" )" ] || [ ! -d /home/openirudi ]
     then
         R=$(useradd  -m -c "Openirudi client user" openirudi)
         if [ $? != 0 ]
