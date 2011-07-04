@@ -18,7 +18,6 @@ if (!$result) {
 }
 
 
-
 while ($row = mysql_fetch_assoc($result)) {
 
     chdir(ROOT);
