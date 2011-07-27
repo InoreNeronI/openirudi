@@ -52,7 +52,6 @@ function pendingTask($mac){
     $hour=date('H:i:00');
 
     $sql="SELECT P.id as PID,T.id as TID, mac FROM  my_task T  INNER JOIN pc P ON P.id=T.pc_id  WHERE associate=1";
-
     $result = mysql_query($sql);
 
     if (!$result) {
