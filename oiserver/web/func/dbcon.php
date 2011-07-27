@@ -3,6 +3,9 @@ $DB='openirudiDB';
 $DBUSER='openirudi';
 $DBPWD='openirudi';
 
+define('PCID','mac');
+
+
 define('ROOT','/home/openirudi/' );
 
 

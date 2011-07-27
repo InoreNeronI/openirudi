@@ -51,6 +51,23 @@ function pendingTask($mac){
     $day=date('Y-m-d');
     $hour=date('H:i:00');
 
+    $sql="SELECT P.id as PID,T.id as TID, mac FROM  my_task T  INNER JOIN pc P ON P.id=T.pc_id  WHERE associate=1";
+
+    $result = mysql_query($sql);
+
+    if (!$result) {
+        echo "DB Error, could not query the database\n";
+        echo 'MySQL Error: ' . mysql_error();
+        echo '<BR/>'.$sql.'<BR/>';
+        exit;
+    }
+
+    while ($row = mysql_fetch_assoc($result)) {
+        if ($row['mac'] == $mac){
+                return true;
+        }
+    }
+
     $sql="SELECT P.id as PID,T.id as TID, mac, day, hour, TIME_TO_SEC(IF(ISNULL(day), TIMEDIFF(hour,'$hour' ), TIMEDIFF( TIMESTAMP(day,hour),'$day $hour' ) )) as DIFF  FROM  my_task T  INNER JOIN pc P ON P.id=T.pc_id  ";
     $sql.="WHERE associate=0 HAVING DIFF <= 0 AND DIFF > -"._MAXDELTASEC;
 

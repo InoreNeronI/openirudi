@@ -12,8 +12,11 @@ $hwId=unserialize(base64_decode($_POST['hwId'])  );
 $hwId['hddid']=trim($hwId['hddid']);
 $hwId['mac']=trim($hwId['mac']);
 
-
-$sql="SELECT * FROM  pc WHERE mac='{$hwId['mac']}' AND hddid='{$hwId['hddid']}'";
+ if(defined($PCID) && $PCID=='mac'){
+    $sql="SELECT * FROM  pc WHERE mac='{$hwId['mac']}'";
+ }else{
+    $sql="SELECT * FROM  pc WHERE mac='{$hwId['mac']}' AND hddid='{$hwId['hddid']}'";
+ }
 
 $result = mysql_query($sql);
 
@@ -28,7 +31,6 @@ $host=array();
 while ($row = mysql_fetch_assoc($result)) {
     $host=$row;
 }
-
 
 $out=base64_encode(serialize($host));
 echo "!@@@$out!@@@";
