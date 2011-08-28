@@ -1,5 +1,6 @@
 <?php
 
+
 class executeClass {
 	static function StrExecute($cmd) {
 		$r=exec($cmd,$e1,$e2);
