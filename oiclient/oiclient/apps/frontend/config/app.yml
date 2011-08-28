@@ -1,0 +1,157 @@
+# default values
+all:
+  sfLanguageSwitch:
+    #flagPath:  /sfLanguageSwitch/images/flag   # optional if you wanna change the path
+    availableLanguages:
+      eu:
+        title: Euskara
+        #image: /sfLanguageSwitch/images/flag/eu.png   # optional if you wanna change the flag
+      es:
+        title: Castellano
+        #image: /sfLanguageSwitch/images/flag/es.png   # optional if you wanna change the flag
+      en:
+        title: English
+        #image: /sfLanguageSwitch/images/flag/en.png   # optional if you wanna change the flag
+  
+  path:
+    pwd:            /var/www/openirudi
+    webroot:        http://localhost/
+    smarty:         %PATH_PWD%/external/smarty/smarty/Smarty.class.php
+    partitiontypes: /var/www/openirudi/config/partitionTypes.ini
+    dnsfile:        '/etc/resolv.conf'
+    confile:        '/var/www/openirudi/cache/openirudi.yml'
+    separator:      '#*#23#*#'
+    oiclient:       '/etc/oiclient'
+
+   #slitaz
+  command:
+    whichprocess:   'sudo /bin/ps -fe |grep "$cmd" |grep -v grep'
+    lshw:           'sudo /usr/sbin/lshw -xml'
+    #partitionTable: 'sudo /sbin/fdisk /dev/$disk -u -l |tr -s " " |egrep "^/dev/[a-z]+[0-9]+\ " | grep -v grep'
+    partitionTable: 'sudo /var/www/openirudi/bin/partedCmd.sh partitionTable $disk'
+    listDevices:    'sudo /var/www/openirudi/bin/partedCmd.sh listDevices'
+    diskGeometry:   'sudo /var/www/openirudi/bin/partedCmd.sh diskGeometry /dev/$disk'
+    sectorBytes:    'sudo /var/www/openirudi/bin/partedCmd.sh sectorBytes /dev/$disk'
+    diskSize:       'sudo /var/www/openirudi/bin/partedCmd.sh diskSize /dev/$disk'
+    diskInfo:     'sudo /var/www/openirudi/bin/partedCmd.sh diskInfo $disk'
+    diskSignature:  'sudo /var/www/openirudi/bin/partedCmd.sh diskSignature $disk'
+    volid:          'sudo /sbin/blkid -c /dev/null /dev/$partitionName'
+    ismounted:      'sudo /var/www/openirudi/bin/partedCmd.sh mountPartition $partitionName'
+    mountpoint:     '/tmp/oi_$partitionName'
+    mountType:      'sudo mount -t $type /dev/$partitionName $mountpoint'
+    mount:          'sudo /var/www/openirudi/bin/partedCmd.sh mountPartition $partitionName $mountpoint'
+    umount:         'sudo /var/www/openirudi/bin/partedCmd.sh umountPartition $partitionName'
+    
+    isDhcp:         'sudo /var/www/openirudi/bin/slitazConfig.sh isDhcp'
+    getethdevices:  'sudo /sbin/ifconfig |grep eth|tr -s " " |cut -d " " -f 1'
+    getipaddress:   'sudo /sbin/ifconfig $device|grep "inet addr"|tr -s " "'
+    getMACaddress:  'sudo /sbin/ifconfig|grep "HWaddr"|tr -s " "'
+    getgateway:     'sudo /sbin/route -n |tr -s " "'
+    changeip:       'sudo /var/www/openirudi/bin/slitazConfig.sh changeIp $oisystemPath $static $device $ip $netmask $gateway $dns_server'
+    sethostname:    'sudo /var/www/openirudi/bin/slitazConfig.sh setHostName $oiSystemPath $newName'
+    gethostname:    'sudo /var/www/openirudi/bin/slitazConfig.sh getHostName'
+    process:        'sudo /var/www/openirudi/bin/oiImageCmd.sh'
+    processLog:     '/tmp/process'
+    cleanProcess:   'sudo /var/www/openirudi/bin/oiImageCmd.sh cleanProcess'
+    processAllLog:  '/tmp/processAllLog'
+    backCommand:    'sudo /var/www/openirudi/bin/slitazConfig.sh backCommand'
+
+
+  oipartition:
+    fsImageCreateType: 'ntfs,ext2,ext3,ext4,linux-swap,swap,fat32'
+    createOiPartition: 'nohup sudo /var/www/openirudi/bin/oiPartitionCmd.sh createOiPartition $diskName $startSector $stopSector $ptype'
+    createImage:       'nohup sudo /var/www/openirudi/bin/oiImageCmd.sh createImage $source $oiSystemPath $imageId $fs-type $serverMountPoint'
+    deployImage:       'nohup sudo /var/www/openirudi/bin/oiImageCmd.sh deployImage $oiSystemPath $imageId  $files $destPartition $fs-type $serverMountPoint'
+    removeImage:       'nohup sudo /var/www/openirudi/bin/oiImageCmd.sh removeImage $oiSystemPath $imageFilePrefix $imageId'
+    #deployActualImage: 'nohup sudo /var/www/openirudi/bin/oipartition/oirestorepartition.php target_partition=$targetPartition image=actual verbose=9'
+    createPartition:   'sudo /var/www/openirudi/bin/partedCmd.sh createPartition /dev/$diskName $part-type $fs-type $start_sector $end_sector createFS'
+    resizePartition:   'sudo /var/www/openirudi/bin/partedCmd.sh resizePartition /dev/$partName $end'
+    removePartition:   'sudo /var/www/openirudi/bin/partedCmd.sh removePartition /dev/$partName'
+    resizeExtFS:       'sudo /var/www/openirudi/bin/cloneExt.sh resizeExtFs /dev/$partitionName $size'
+    resizeNtfsFS:      'sudo /var/www/openirudi/bin/cloneNtfs.sh resizeNtfsFs /dev/$partitionName $size'
+    deleteImage:
+    changePartitionId: 'sudo /var/www/openirudi/bin/partedCmd.sh changePartitionType /dev/$diskName $number $type-fs'
+    reSyncDisk:        'nohup sudo /var/www/openirudi/bin/partedCmd.sh resync'
+    changeNtfsLabel:   'sudo /var/www/openirudi/bin/cloneNtfs.sh changeLabel /dev/$partitionName $newLabel'
+    changeExtLabel:    'sudo /var/www/openirudi/bin/cloneExt.sh changeLabel /dev/$partitionName $newLabel'
+    changeUUID:        'sudo /var/www/openirudi/bin/changeUuid.php /dev/$partitionName $uuid'
+    winStandalone:     'sudo /var/www/openirudi/bin/windowsCmd.sh fixmbr $type $partition'
+    grubStandalone:    'sudo /var/www/openirudi/bin/linuxCmd.sh grubStandalone $mountPoint'
+
+  const:
+    bytessector:     512
+    pwd:             'sjdlaksjda90qwñaslkdSS'
+    bootTimeout:     2000
+
+  oi:
+    cachelabel:      OICache
+    imagelabel:      OIImage
+    imagesdir:       /openirudi
+    imagePrefix:     oiImage_
+    taskDeltaTime:   '300'
+    partitionOrder:  'windows7system,windows7boot,windowsXP,linux,oiSystem'
+
+
+  grub:
+    bootLoaderOrder: 'linux,windows7system,windowsXP,oiSystem'
+    systemLabel:     'Openirudi system'
+    label:           'OpenIrudi boot option'
+    menufile:        '/boot/grub/grub.cfg'
+    readMenu:        'sudo /var/www/openirudi/bin/slitazConfig.sh grubReadMenu $menuFile'
+    saveMenu:        'sudo /var/www/openirudi/bin/slitazConfig.sh grubSaveMenu $menuFile $strMenu'
+    install:         'sudo /var/www/openirudi/bin/slitazConfig.sh grubInstall $oisystemDisk $mountPoint'
+    grubsetenv:      'sudo /var/www/openirudi/bin/slitazConfig.sh setGrubEnv $oiSystemPath $envVar $value'
+    nextBoot:        'sudo /var/www/openirudi/bin/slitazConfig.sh bootPartition $oiSystemPath $grubIndex'
+    bootPartition:   'sudo /usr/sbin/grub-set-default --root-directory=$path $menuIndex'
+    reboot:          'sudo /sbin/reboot'
+    halt:            'sudo /sbin/poweroff'
+
+  oisystem:
+    install:         'sudo /var/www/openirudi/bin/SlitazInstall.sh $partitionName'
+    bootInstall:     'sudo /var/www/openirudi/bin/SlitazInstall.sh $partitionName boot'
+    changePwd:       'sudo /var/www/openirudi/bin/slitazConfig.sh changePassword $user $newPwd $newMd5'
+    active:          'sudo /var/www/openirudi/bin/slitazConfig.sh getSystemPartition'
+    setConfProperty: 'sudo /var/www/openirudi/bin/slitazConfig.sh setConfProperty $confFile $property $value'
+
+  log:
+    OicachePartitionInstallLog:  '/tmp/OIcachePartitionInstall.log'
+    OicacheSystemInstallLog:  '/tmp/OIcacheSystemInstall.log'
+    OicacheCreateImage:  '/tmp/OIcacheCreateImage.log'
+    OicacheDeployImage:  '/tmp/OIcacheDeployImage.log'
+
+  server:
+    imagesUrl:   'http://$server/oiserver/web/func/'
+    user:        'openirudi'
+    password:    '12345678'
+    localPath:   '/tmp/server'
+    remotePath:  '/home/openirudi'
+    mountCmd:    'sudo /usr/bin/expect /var/www/openirudi/bin/sshServer.sh'
+
+  windows:
+    export:             'sudo /var/www/openirudi/bin/windowsCmd.sh exportRegistryKey $hiveFile $prefixString $key $exportFile'
+    #modifyHex:          'sudo /var/www/openirudi/bin/windowsCmd.sh modifyHexRegistryKey $hiveFile $key $offset $value'
+    #modifyStr:          'sudo /var/www/openirudi/bin/windowsCmd.sh modifyStrRegistryKey $hiveFile $key $value'
+    #modifyMultiSZ:      'sudo /var/www/openirudi/bin/windowsCmd.sh modifyMultiSZRegistryKey $hiveFile $key $value'
+    importRegistryKey:  'sudo /var/www/openirudi/bin/windowsCmd.sh importRegistryKey $hiveFile $prefix $importFile'
+    exportFile:         '/tmp/export.reg'
+
+  linux:
+    setHostName:     'sudo /var/www/openirudi/bin/linuxCmd.sh setHostName $mountPoint $newName'
+    changeIPAddress: 'sudo /var/www/openirudi/bin/linuxCmd.sh changeIPAddress $mountPoint'
+
+  driver:
+    driverUrl: 'http://$server/oiserver/web/index.php/en/driver/search?type=$type&vid=$vendor&pid=$device&subsys=$subsys&rev=$rev'
+    sysprepwinpath:   '/sysprep/i386/'
+    defaultwinpath:   '/openirudi/'
+    unzip:     'sudo /usr/bin/unzip -o $zipfile -d $winpath'
+
+  nfs:
+    localMountPoint:   '/tmp/oi_$host'
+    exportFileConf:    '/etc/exports'
+    exportPermissions: '(rw,no_root_squash)'
+    nfsdDaemon:        'sudo /etc/init.d/unfsd'
+    nfsMount:          'sudo mount $host:$exportPath $localMountPoint'
+    nfsUmount:         'sudo umount $localMountPoint'
+    isnfsmounted:      'mount |grep $localMountPoint | cut -d " "  -f 1'
+    nfscopy:           'sudo cp -a $sourcePath $destinePath'
+

@@ -1,0 +1,2 @@
+set:
+  soap.wsdl_cache_enabled: off

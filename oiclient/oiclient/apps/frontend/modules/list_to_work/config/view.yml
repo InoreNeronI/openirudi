@@ -1,0 +1,3 @@
+default:
+  javascripts:    [jquery, jquery.boxy.js]
+  stylesheets:    [main, boxy.css]
