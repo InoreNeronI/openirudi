@@ -1,8 +1,0 @@
-soap:
-  index: { enable: false }
-  change: { enable: false }
-  save: { enable: false }
-  remove: { enable: false }
-  newExtended: { enable: false }
-  add: { enable: false }
-  newLogic: { enable: false }

@@ -1,5 +1,0 @@
-soap:
-  getInfo: { enable: false }
-  wsGetImages: { enable: true, parameter: {  }, result: null, render: false }
-  wsGetPath: { enable: true, parameter: {  }, result: null, render: false }
-  getServerPath: { enable: false }
