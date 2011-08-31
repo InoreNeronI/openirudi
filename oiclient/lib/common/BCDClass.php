@@ -1,5 +1,6 @@
 <?php
 
+
 class BCDClass {
     private $BCD=null;
     private $BCDPartition=null;
