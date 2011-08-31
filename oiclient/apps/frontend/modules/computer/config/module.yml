@@ -1,0 +1,4 @@
+soap:
+  index: { enable: false }
+  detail: { enable: false }
+  reload: { enable: false }

@@ -1,0 +1,19 @@
+default:
+  javascripts:    [jquery]
+
+soap:
+  index: { enable: false }
+  installOICache: { enable: false }
+  showLog: { enable: false }
+  OiSystemInit: { enable: false }
+  systemInstall: { enable: false }
+  newImage: { enable: false }
+  createImage: { enable: false }
+  updateImage: { enable: false }
+  saveUpdateImage: { enable: false }
+  prepareDeploy: { enable: false }
+  deploy: { enable: false }
+  installBootloader: { enable: false }
+  boot: { enable: false }
+  downloadImage: { enable: false }
+  uploadImage: { enable: false }

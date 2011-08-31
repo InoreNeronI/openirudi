@@ -1,0 +1,4 @@
+soap:
+  index: { enable: false }
+  changeIpAddress: { enable: false }
+  server: { enable: false }

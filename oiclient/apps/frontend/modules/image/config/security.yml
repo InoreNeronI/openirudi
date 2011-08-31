@@ -1,0 +1,21 @@
+all:
+  is_secure:  on
+  credentials: my_edit_all
+
+reinstallOIsystem3:
+  is_secure:  off
+
+installOIsystem3:
+  is_secure:  off
+
+newImage3:
+  is_secure:  off
+
+taskDeploy3:
+  is_secure:  off
+
+deployImageSet3:
+  is_secure:  off
+
+deployImage3:
+  is_secure:  off

@@ -1,0 +1,499 @@
+<?xml version="1.0"?>
+<xliff version="1.0">
+  <file source-language="EN" target-language="es" datatype="plaintext" original="messages" date="2011-06-13T16:15:06Z" product-name="messages">
+    <body>
+      <trans-unit id="1">
+        <source>Please, check following errors:</source>
+        <target>Comprueba los siguientes errores:</target>
+      </trans-unit>
+      <trans-unit id="2">
+        <source>principal</source>
+        <target>principal</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>crear imagen</source>
+        <target>crear imagen</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>restaurar image</source>
+        <target>restaurar imagen</target>
+      </trans-unit>
+      <trans-unit id="5">
+        <source>gestionar disco</source>
+        <target>gestionar disco</target>
+      </trans-unit>
+      <trans-unit id="6">
+        <source>configuracion</source>
+        <target>configuraci&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="7">
+        <source>hardware</source>
+        <target>hardware</target>
+      </trans-unit>
+      <trans-unit id="8">
+        <source>Logout</source>
+        <target>Salir</target>
+      </trans-unit>
+      <trans-unit id="9">
+        <source>Partition</source>
+        <target>Partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="10">
+        <source>Type</source>
+        <target>Tipo</target>
+      </trans-unit>
+      <trans-unit id="11">
+        <source>ID</source>
+        <target>ID</target>
+      </trans-unit>
+      <trans-unit id="12">
+        <source>Size</source>
+        <target>Tama&#xF1;o</target>
+      </trans-unit>
+      <trans-unit id="13">
+        <source>Max. allowed size: %1%</source>
+        <target>Tama&#xF1;o m&#xE1;x. permitido: %1%</target>
+      </trans-unit>
+      <trans-unit id="14">
+        <source>Save</source>
+        <target>Guardar</target>
+      </trans-unit>
+      <trans-unit id="15">
+        <source>Cancel</source>
+        <target>Cancelar</target>
+      </trans-unit>
+      <trans-unit id="16">
+        <source>Partitions</source>
+        <target>Particiones</target>
+      </trans-unit>
+      <trans-unit id="17">
+        <source>Disk</source>
+        <target>Disco</target>
+      </trans-unit>
+      <trans-unit id="18">
+        <source>Bootable</source>
+        <target>Arrancable</target>
+      </trans-unit>
+      <trans-unit id="19">
+        <source>Start</source>
+        <target>Iniciar</target>
+      </trans-unit>
+      <trans-unit id="20">
+        <source>Parttion size</source>
+        <target>Tama&#xF1;o partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="21">
+        <source>FS Free/size</source>
+        <target>FS Libre/total</target>
+      </trans-unit>
+      <trans-unit id="22">
+        <source/>
+        <target/>
+      </trans-unit>
+      <trans-unit id="23">
+        <source>OpenIrudi System</source>
+        <target>OpenIrudi System</target>
+      </trans-unit>
+      <trans-unit id="24">
+        <source>NO FS</source>
+        <target>NO FS</target>
+      </trans-unit>
+      <trans-unit id="25">
+        <source>Change</source>
+        <target>Cambiar</target>
+      </trans-unit>
+      <trans-unit id="26">
+        <source>Primary</source>
+        <target>Primaria</target>
+      </trans-unit>
+      <trans-unit id="27">
+        <source>Extended</source>
+        <target>Extendida</target>
+      </trans-unit>
+      <trans-unit id="28">
+        <source>OiPartition</source>
+        <target>OiPartition</target>
+      </trans-unit>
+      <trans-unit id="29">
+        <source>Logical</source>
+        <target>L&#xF3;gica</target>
+      </trans-unit>
+      <trans-unit id="30">
+        <source>False</source>
+        <target>False</target>
+      </trans-unit>
+      <trans-unit id="31">
+        <source>True</source>
+        <target>True</target>
+      </trans-unit>
+      <trans-unit id="32">
+        <source>Working</source>
+        <target>Trabajando</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>Login required</source>
+        <target>Requiere login</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>Back</source>
+        <target>Atr&#xE1;s</target>
+      </trans-unit>
+      <trans-unit id="35">
+        <source>User</source>
+        <target>Usuario</target>
+      </trans-unit>
+      <trans-unit id="36">
+        <source>Password</source>
+        <target>Clave</target>
+      </trans-unit>
+      <trans-unit id="37">
+        <source>Sign in</source>
+        <target>Entrar</target>
+      </trans-unit>
+      <trans-unit id="38">
+        <source>list to works</source>
+        <target>Tareas</target>
+      </trans-unit>
+      <trans-unit id="39">
+        <source>CREAR IMAGEN DE PATICIONES DEL DISCO DURO</source>
+        <target>CREAR IMAGEN DE PARTICIONES</target>
+      </trans-unit>
+      <trans-unit id="40">
+        <source>RESTAURAR IM&#xC1;GENES A PARTICIONES DEL DISCO DURO</source>
+        <target>RESTAURAR IM&#xC1;GENES A PARTICIONES</target>
+      </trans-unit>
+      <trans-unit id="41">
+        <source>PREPARAR EQUIPO PARA REALIZAR TAREAS DESATENDIDAS</source>
+        <target>PREPARAR EQUIPO PARA REALIZAR TAREAS DESATENDIDAS</target>
+      </trans-unit>
+      <trans-unit id="42">
+        <source>GESTIONAR LOS DISCOS DUROS DEL EQUIPO</source>
+        <target>GESTIONAR DISCOS DUROS</target>
+      </trans-unit>
+      <trans-unit id="43">
+        <source>CONFIGURACI&#xD3;N DEL CLIENTE OPENIRUDI</source>
+        <target>CONFIGURACI&#xD3;N DEL CLIENTE OPENIRUDI</target>
+      </trans-unit>
+      <trans-unit id="44">
+        <source>Partition to boot</source>
+        <target>Partici&#xF3;n arrancable</target>
+      </trans-unit>
+      <trans-unit id="45">
+        <source>os</source>
+        <target>so</target>
+      </trans-unit>
+      <trans-unit id="46">
+        <source>partition</source>
+        <target>partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="47">
+        <source>Boot</source>
+        <target>Arrancar</target>
+      </trans-unit>
+      <trans-unit id="48">
+        <source>Continue</source>
+        <target>Continuar</target>
+      </trans-unit>
+      <trans-unit id="49">
+        <source>Show deploy log?</source>
+        <target>&#xBF;Mostrar logs?</target>
+      </trans-unit>
+      <trans-unit id="50">
+        <source>yes</source>
+        <target>s&#xED;</target>
+      </trans-unit>
+      <trans-unit id="51">
+        <source>no</source>
+        <target>no</target>
+      </trans-unit>
+      <trans-unit id="52">
+        <source>log</source>
+        <target>log</target>
+      </trans-unit>
+      <trans-unit id="53">
+        <source>Create Image from partition</source>
+        <target>Crear imagen desde partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="54">
+        <source>name</source>
+        <target>nombre</target>
+      </trans-unit>
+      <trans-unit id="55">
+        <source>Image Description</source>
+        <target>Descripci&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="56">
+        <source>Source partition</source>
+        <target>Origen</target>
+      </trans-unit>
+      <trans-unit id="57">
+        <source>Deploy image group to disk</source>
+        <target>Restaurar grupo de im&#xE1;genes al disco</target>
+      </trans-unit>
+      <trans-unit id="58">
+        <source>Id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="59">
+        <source>composition</source>
+        <target>composici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="60">
+        <source>Deploy</source>
+        <target>Restaurar</target>
+      </trans-unit>
+      <trans-unit id="61">
+        <source>Deploy one image to disk partition</source>
+        <target>Restaurar una imagen a una partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="62">
+        <source>partition_size</source>
+        <target>Tama&#xF1;o partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="63">
+        <source>created_at</source>
+        <target>Creado</target>
+      </trans-unit>
+      <trans-unit id="64">
+        <source>Image Set properties</source>
+        <target>Propiedades grupo</target>
+      </trans-unit>
+      <trans-unit id="65">
+        <source>Name</source>
+        <target>Nombre</target>
+      </trans-unit>
+      <trans-unit id="66">
+        <source>Images</source>
+        <target>Im&#xE1;genes</target>
+      </trans-unit>
+      <trans-unit id="67">
+        <source>Deploy in disk</source>
+        <target>Restaurar en disco</target>
+      </trans-unit>
+      <trans-unit id="68">
+        <source>Selection</source>
+        <target>Selecci&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="69">
+        <source>Image properties</source>
+        <target>Propiedades imagen</target>
+      </trans-unit>
+      <trans-unit id="70">
+        <source>Created at</source>
+        <target>Creado</target>
+      </trans-unit>
+      <trans-unit id="71">
+        <source>Partition  size</source>
+        <target>Tama&#xF1;o partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="72">
+        <source>filesystem  size</source>
+        <target>Tama&#xF1;o sistema ficheros</target>
+      </trans-unit>
+      <trans-unit id="73">
+        <source>Description</source>
+        <target>Descripci&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="74">
+        <source>Deploy and overwrite partition</source>
+        <target>Restaurar (&#xA1;se borrar&#xE1;n datos de la partici&#xF3;n!)</target>
+      </trans-unit>
+      <trans-unit id="75">
+        <source>Sel</source>
+        <target>Sel</target>
+      </trans-unit>
+      <trans-unit id="76">
+        <source>now</source>
+        <target>ahora</target>
+      </trans-unit>
+      <trans-unit id="77">
+        <source>Deploy in new partition</source>
+        <target>Restaurar en una nueva partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="78">
+        <source>sel</source>
+        <target>sel</target>
+      </trans-unit>
+      <trans-unit id="79">
+        <source>disk</source>
+        <target>disco</target>
+      </trans-unit>
+      <trans-unit id="80">
+        <source>new primary partition</source>
+        <target>nueva partici&#xF3;n primaria</target>
+      </trans-unit>
+      <trans-unit id="81">
+        <source>new logic partition</source>
+        <target>nueva partici&#xF3;n l&#xF3;gica</target>
+      </trans-unit>
+      <trans-unit id="82">
+        <source>Openirudi local system</source>
+        <target>OpenIrudi sistema local</target>
+      </trans-unit>
+      <trans-unit id="83">
+        <source>Change IP Adrress</source>
+        <target>Cambiar direcci&#xF3;n IP</target>
+      </trans-unit>
+      <trans-unit id="84">
+        <source>Device</source>
+        <target>Interfaz</target>
+      </trans-unit>
+      <trans-unit id="85">
+        <source>Method of assignment</source>
+        <target>Modo</target>
+      </trans-unit>
+      <trans-unit id="86">
+        <source>Dynamic IP Address (DHCP)</source>
+        <target>IP din&#xE1;mica (DHCP)</target>
+      </trans-unit>
+      <trans-unit id="87">
+        <source>Static</source>
+        <target>IP Est&#xE1;tica</target>
+      </trans-unit>
+      <trans-unit id="88">
+        <source>IP Address</source>
+        <target>Direcci&#xF3;n IP</target>
+      </trans-unit>
+      <trans-unit id="89">
+        <source>Netmask</source>
+        <target>M&#xE1;scara</target>
+      </trans-unit>
+      <trans-unit id="90">
+        <source>Default gateway</source>
+        <target>Puerta de enlace</target>
+      </trans-unit>
+      <trans-unit id="91">
+        <source>Name server</source>
+        <target>Servidor de nonmbres (DNS)</target>
+      </trans-unit>
+      <trans-unit id="92">
+        <source>Change Host Name</source>
+        <target>Cambiar hostname</target>
+      </trans-unit>
+      <trans-unit id="93">
+        <source>OpenIrudi Server IP address</source>
+        <target>IP del servidor OpenIrudi</target>
+      </trans-unit>
+      <trans-unit id="94">
+        <source>Save pc config in server</source>
+        <target>Sincronizar con servidor</target>
+      </trans-unit>
+      <trans-unit id="95">
+        <source>Do you want save pc config in server?</source>
+        <target>&#xBF;Quieres guardar la configuraci&#xF3;n en el servidor?</target>
+      </trans-unit>
+      <trans-unit id="96">
+        <source>If you Install Openirudi in local, you deploy may be faster and  you can process unattended tasks</source>
+        <target>La instalaci&#xF3;n de OpenIrudi en local te permitir&#xE1; realizar clonaciones m&#xE1;s r&#xE1;pidas y utilizar las tareas desatendidas</target>
+      </trans-unit>
+      <trans-unit id="97">
+        <source>Create</source>
+        <target>Crear</target>
+      </trans-unit>
+      <trans-unit id="98">
+        <source>Reinstall</source>
+        <target>Reinstalar</target>
+      </trans-unit>
+      <trans-unit id="99">
+        <source>FixMbr</source>
+        <target>FixMbr</target>
+      </trans-unit>
+      <trans-unit id="100">
+        <source>Boot first partition</source>
+        <target>Arrancar primera partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="101">
+        <source>Boot menu</source>
+        <target>Menu de arranque</target>
+      </trans-unit>
+      <trans-unit id="102">
+        <source>General</source>
+        <target>General</target>
+      </trans-unit>
+      <trans-unit id="103">
+        <source>Reload hardware information</source>
+        <target>Refrescar informaci&#xF3;n de hardware</target>
+      </trans-unit>
+      <trans-unit id="104">
+        <source>Hardware detail</source>
+        <target>Detalle hardware</target>
+      </trans-unit>
+      <trans-unit id="105">
+        <source>Machine</source>
+        <target>M&#xE1;quina</target>
+      </trans-unit>
+      <trans-unit id="106">
+        <source>Motherboard</source>
+        <target>Placa base</target>
+      </trans-unit>
+      <trans-unit id="107">
+        <source>Processor</source>
+        <target>Procesador</target>
+      </trans-unit>
+      <trans-unit id="108">
+        <source>Memory</source>
+        <target>Memoria</target>
+      </trans-unit>
+      <trans-unit id="109">
+        <source>Network</source>
+        <target>Red</target>
+      </trans-unit>
+      <trans-unit id="110">
+        <source>Interface</source>
+        <target>Intefaz</target>
+      </trans-unit>
+      <trans-unit id="111">
+        <source>IP</source>
+        <target>IP</target>
+      </trans-unit>
+      <trans-unit id="112">
+        <source>Subnet Mask</source>
+        <target>M&#xE1;scara subred</target>
+      </trans-unit>
+      <trans-unit id="113">
+        <source>No network device detected</source>
+        <target>No se ha encontrado dispositivo de red</target>
+      </trans-unit>
+      <trans-unit id="114">
+        <source>Hardware Devices</source>
+        <target>Dispositivos Hardware</target>
+      </trans-unit>
+      <trans-unit id="115">
+        <source>Found PCI Device-Identification Strings</source>
+        <target>Cadenas de identificaci&#xF3;n dispositivos PCI</target>
+      </trans-unit>
+      <trans-unit id="116">
+        <source>sucesfully</source>
+        <target>correcta</target>
+      </trans-unit>
+      <trans-unit id="117">
+        <source>With ERRORS!!</source>
+        <target>con ERRORES!!</target>
+      </trans-unit>
+      <trans-unit id="118">
+        <source>Do you want show log?</source>
+        <target>¿Visualizar el log?</target>
+      </trans-unit>
+      <trans-unit id="119">
+        <source>Select partition</source>
+        <target>Seleccionar partici&#xF3;n</target>
+      </trans-unit>
+      <trans-unit id="120">
+        <source>Name is empty</source>
+        <target>El nombre est&#xE1; vacio</target>
+      </trans-unit>
+      <trans-unit id="121">
+        <source>Select disk</source>
+        <target>Seleccionar disco</target>
+      </trans-unit>
+      <trans-unit id="122">
+        <source>oiClient in your disk</source>
+        <target>oiClient en tu disco</target>
+      </trans-unit>
+      <trans-unit id="123">
+        <source>If you Install oiclient in local disk, you deploy faster and  you can boot oiclient from disk without PXE</source>
+        <target>Instalar oiClient en tu disco duro permite acelerar las tareas de restauraci&#xF3;n y arrancar sin necesidad de CD/PXE</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

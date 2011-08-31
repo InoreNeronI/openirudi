@@ -1,0 +1,28 @@
+propel:
+  computer:
+    _attributes:  { phpName: Computer }
+    id:
+    name:         varchar(255)
+    mac:          varchar(255)
+    groups:       { type: integer, default: 0}
+    hw:           longvarchar
+
+  partition:
+    _attributes:  { phpName: Partition }
+    id:
+    size:         { type: integer, default: 0}
+    bootable:     boolean
+    start:        { type: integer, default: 0}
+    end:          { type: integer, default: 0}
+    cyls:         { type: integer, default: 0}
+    blocks:       { type: integer, default: 0}
+    device:       varchar(255)
+
+  image:
+    _attributes:  { phpName: Image }
+    id:
+    name:         varchar(255)
+  
+  config:
+    _attributes:  { phpName: Config }
+    id:
