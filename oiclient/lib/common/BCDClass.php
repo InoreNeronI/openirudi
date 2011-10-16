@@ -6,6 +6,7 @@ class BCDClass {
     private $BCDPartition=null;
     private $registry;
 
+    
     function __construct() {
         if($this->initialice() ){
             $this->readHive();
