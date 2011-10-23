@@ -9,7 +9,7 @@ fi
 
 SERVER=$1
 
-rsync -Cavz aitor@${SERVER}:/home/aitor/kodea/openirudi/* /var/www/openirudi/
+rsync -Cavz aitor@${SERVER}:/home/aitor/kodea/oiclient/* /var/www/openirudi/
 if ( ! [ $? -eq 0 ] )
 then
 	echo "I can't rsync with server"

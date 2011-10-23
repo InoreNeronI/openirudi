@@ -361,7 +361,7 @@ exceptionHandlerClass::saveMessage( "------------------- " );
                 $disk=$this->hw->listDisks->diskOfpartition($partitionName);
 echo "NORA:: url_for('image/nextboot?partitionName=' . $partitionName . '&diskName=' . $disk)" ;
 exceptionHandlerClass::saveMessage("NORA:: url_for('image/nextboot?partitionName=' . $partitionName . '&diskName=' . $disk)");
- url_for('article/read?title=Finance_in_France', true)
+
                 $this->redirect(url_for('image/nextboot?partitionName=' . $partitionName . '&diskName=' . $disk));
                 exceptionHandlerClass::spoolException(true);
                 exit;
