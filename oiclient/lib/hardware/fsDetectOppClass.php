@@ -60,7 +60,7 @@ class fsDetectOppClass  extends FileSystemOppClass {
                 //exceptionHandlerClass::saveMessage("partition: ".$this->partitionName . " os: windows7System" );
                 $fsType= new windows7SystemOppClass($this->disk,$this->partitionNumber,$this->partitionName,$this->partitionTypeId);
 
-            }elseif($this->partitionTypeId=='7' && !is_file($mountPoint.'/bootmgr') && is_dir($mountPoint.'/Recovery') && is_dir($mountPoint.'/ProgramData') && !is_file($mountPoint.'/boot.ini')  ) {
+            }elseif($this->partitionTypeId=='7' && !is_file($mountPoint.'/bootmgr') && is_dir($mountPoint.'/ProgramData') && !is_file($mountPoint.'/boot.ini')  ) {
                 //exceptionHandlerClass::saveMessage("partition: ".$this->partitionName . " os: windows7Boot" );
                 $fsType= new windows7BootOppClass($this->disk,$this->partitionNumber,$this->partitionName,$this->partitionTypeId);
 

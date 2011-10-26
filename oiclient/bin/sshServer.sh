@@ -1,5 +1,5 @@
 #!/usr/bin/expect -d
-set timeout 30
+set timeout 60
 
 if { $argc != 5 } {
     puts "Wrong argument number"
