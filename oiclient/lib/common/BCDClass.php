@@ -108,6 +108,7 @@ class BCDClass {
             $key='Objects\\'.$obj.'\Elements\\'.$type;
             if(isset ($this->BCD['objects'][$obj]['elements'][$type]['element'])){
                 $newVal=explode(',',str_replace('hex:','',$this->BCD['objects'][$obj]['elements'][$type]['element']));
+                
                 switch ( count($newVal) ){
                     case 88:
                         $partitionOffset='35';
@@ -115,6 +116,7 @@ class BCDClass {
                         break;
 
                     case 254:
+                    case 200:
                         $partitionOffset='87';
                         $signatureOffset='111';
                         break;
