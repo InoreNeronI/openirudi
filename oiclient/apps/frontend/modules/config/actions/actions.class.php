@@ -147,7 +147,7 @@ $this->hw->listDisks->disks['sda']->partitions['sda1']->fileSystem->postDeploy()
             if($liveCD){
                 $this->hw->network->changeHostname($hostName, '/');
             }
-            exceptionHandlerClass::saveMessage("New name has been registered");
+            //exceptionHandlerClass::saveMessage("New name has been registered");
         } else {
             exceptionHandlerClass::saveMessage("NO VALID SERVER ADDRESS!!!");
         }

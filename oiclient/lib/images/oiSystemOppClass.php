@@ -26,16 +26,7 @@ class oiSystemOppClass extends extOppClass {
             $this->umount();
         }
         return $r;
-    }
-
-    function set_version() {
-        $inf=manageIniFilesClass::readIniFile(sfConfig::get('app_path_oiclient'));
-        if($inf !== false && isset($inf['version'])){
-            $this->version=$inf['version'];
-        }else{
-            $this->version=0;
-        }
-    }
+    }   
 
     function clientUpdate(){
         $this->__get('version');
@@ -67,14 +58,13 @@ class oiSystemOppClass extends extOppClass {
         if (!empty($mountPoint)) {
             $path = $mountPoint . '/' . sfConfig::get('app_oi_imagesdir');
             $name = sfConfig::get('app_oi_imagePrefix');
-            $ext = 'f[a-z0-9]+';
+            $ext = '(f[a-z0-9]+|info)';
 
             $glob = glob($path . '/*');
             foreach ($glob as $fileName) {
                 $pattern = "/$name([0-9]+)\.$ext/";
                 $n = preg_match($pattern, $fileName, $match);
                 if (isset($match[1])) {
-                    exceptionHandlerClass::saveMessage("ff AZte: $fileName ");
                     if(!isset($imageList[$match[1]])){
                         $imageList[$match[1]] = filesize($fileName);
                     }else{

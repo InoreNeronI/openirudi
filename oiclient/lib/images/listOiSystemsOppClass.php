@@ -23,6 +23,7 @@ class listOiSystemsOppClass {
             exceptionHandlerClass::saveError($e->getMessage());
         }
     }
+    
     function __set($propertyName, $value) {
         try {
             if (!property_exists('listOiSystemsOppClass', $propertyName)) {
@@ -106,6 +107,18 @@ class listOiSystemsOppClass {
             }
         }
         return false;
+    }
+        
+    
+    function activeVersion() {
+        $inf=manageIniFilesClass::readIniFile(sfConfig::get('app_path_oiclient'));
+        if($inf !== false && isset($inf['version'])){
+            $version=$inf['version'];
+        }else{
+            $version=0;
+        }
+        
+        return $version;
     }
 
 

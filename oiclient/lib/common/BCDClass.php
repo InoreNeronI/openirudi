@@ -111,7 +111,8 @@ class BCDClass {
                 
                 switch ( count($newVal) ){
                     case 88:
-                        $partitionOffset='35';
+                        //$partitionOffset='35';
+                        $partitionOffset='37';
                         $signatureOffset='59';
                         break;
 
@@ -126,14 +127,10 @@ class BCDClass {
                 }
 
                 $keyElement=$this->registry->getRealKey( 'Objects\\'.$obj.'\Elements\\'.$type );
-
-                if( strlen($newSignature) % 2 ){
-                    $newSignature='0'.$newSignature;
-                }
                 
-                if( strlen($partitionStart) % 2 ){
-                    $partitionStart='0'.$partitionStart;
-                }
+                $newSignature=str_pad($newSignature,8,'0',STR_PAD_LEFT);
+
+                $partitionStart=str_pad($partitionStart,12,'0',STR_PAD_LEFT);
 
                 $newSignature1=str_split($newSignature,2);
                 for ($i=0;$i<count($newSignature1);$i++){
@@ -168,6 +165,7 @@ class BCDClass {
         }
 
         $w7sDiskSignature=$hw->listDisks->disks[$this->BCDPartition->disk]->diskSignature;
+        
         $w7sStart=unitsClass::diskSector2SizeHex($this->BCDPartition->startSector);
         
 

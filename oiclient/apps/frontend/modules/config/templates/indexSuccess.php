@@ -7,10 +7,12 @@
 
     <?php //echo '** '.link_to('[PROBA]', 'config/proba'); ?>
 
+<?php $version=$listOisystems->activeVersion(); ?>
+
 <div class="eventos">
    
     <fieldset class="config">
-        <legend><?php echo __('oiClient in your disk'); ?></legend>
+        <legend><?php echo __('oiClient in your disk').'   '. __('version').' '. $version; ?></legend>
         <div class="celda">
             <?php include_partial('oipartition', array('hw' => $hw, 'listOisystems' => $listOisystems)); ?>
         </div>

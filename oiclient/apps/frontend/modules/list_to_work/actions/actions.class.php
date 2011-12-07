@@ -28,6 +28,7 @@ class list_to_workActions extends sfActions {
     
     public function executeIndex(sfWebRequest $request) {
         
+        
         if (ImageServerOppClass::is_validServer()) {
             $this->hw->network->loadServerRegistry($this->hw->pcID,$this->listOisystems);
             $taskList = ImageServerOppClass::getTaskToDoNow();

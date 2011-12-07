@@ -95,7 +95,10 @@ class unitsClass{
         static function diskSector2SizeHex($sectors,$unit='',$sectorBytes=0){
             if(empty($sectorBytes)) $sectorBytes=sfConfig::get('app_const_bytessector');
             $bytes=$sectors * $sectorBytes;
-            return dechex($bytes);
+            //$r=dechex($bytes);
+            $r=self::longDec2hex($bytes);
+            
+            return $r;
 	}
 
 	static function size2sector($size,$sectorBytes=0){
@@ -126,6 +129,16 @@ class unitsClass{
             } while( $dec >= 1 );
 
             return $sign . $h;
+        }
+        
+        function longHex2dec($hex) {
+            $dec = 0;
+            $bitval = 1;
+            for($pos = 1; $pos <= strlen($hex); $pos++) {
+                $dec += hexdec(substr($hex, -$pos, 1)) * $bitval;
+                $bitval *= 16;
+            }
+            return($dec);
         }
 
 }

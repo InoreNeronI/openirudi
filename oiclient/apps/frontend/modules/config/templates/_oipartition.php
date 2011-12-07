@@ -22,14 +22,16 @@ if(count($listOisystems->oisystems) == 0) {
             <th><?php echo __('partition'); ?></th>
             <th><?php echo _('operations'); ?></th>
         </tr>
+        
             <?php
+            
             $cc=0;
             foreach($hw->listDisks->oiPartitions()  as $partitionName => $partition ){
                 $diskName=$hw->listDisks->diskOfpartition($partitionName);
                 $disk=$hw->listDisks->disks[$diskName];
                 $cc++;
                 echo '<tr ';if($cc%2 == 0) echo'class=""';else echo' class="odd"';echo'>';
-                echo '<td>' . $disk->model .' ( '. $partition->partitionNumber .' )</td>';
+                echo '<td>' . $disk->model .' ( '.__('partition').' '. $partition->partitionNumber .' )</td>';
                 echo '<td>';
                 echo link_to('['.__('Reinstall').']', 'image/reinstallOiSystem2?partitionName='.$partition->partitionName );
                 echo link_to('['.__('FixMbr').']', 'image/mKBoot' );

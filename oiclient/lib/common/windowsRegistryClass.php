@@ -50,7 +50,7 @@ class windowsRegistryClass {
     function txt2hex($txt){
         $nip=array();
         foreach (  str_split($txt) as $c ) {
-          $nip[]=dechex(ord($c));
+          $nip[]=unitsClass::longDec2hex(ord($c));
           $nip[]="00";
         }
         $n2ip=implode(",",$nip);

@@ -78,7 +78,6 @@ class partitionOppClass {
         }else {
             $this->set_bootable(false);
         }
-
         $this->startSector=$partition['start'];
 
         if(isset($partition['id']) && isset($partitionTypes[$partition['id']])) {

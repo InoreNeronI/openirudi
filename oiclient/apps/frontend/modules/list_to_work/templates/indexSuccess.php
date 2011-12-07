@@ -2,6 +2,12 @@
 <?php include_partial('menu_js',array('hw' => $hw)); ?>
 <?php echo use_helper('Javascript'); ?>
 
+<?php
+if($hw->network->hostname == 'unknown' || empty($hw->network->hostname) ){
+            exceptionHandlerClass::saveMessage( __('Unknown computer! if you configure a name for this computer you will get advanced features.') );
+        }
+        ?>
+
 <div class="eventos">
 <fieldset>
     <legend><?php echo __("Partition to boot"); ?></legend>

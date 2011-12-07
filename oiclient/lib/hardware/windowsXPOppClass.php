@@ -173,7 +173,7 @@ class windowsXPOppClass  extends windowsOppClass {
 
             $old=str_replace('hex:', '', $old);
             $oldSignature=strtoupper(dechex(hexdec(implode('', array_reverse(explode(',',substr($old,0,11)))))));
-            $oldOffset=strtoupper(dechex(hexdec(implode('', array_reverse(explode(',',substr($old,12,36)))))));
+            $oldOffset=strtoupper( unitsClass::longDec2hex(hexdec(implode('', array_reverse(explode(',',substr($old,12,36)))))));
 
             $xpDiskSignature=$hw->listDisks->disks[$this->disk]->diskSignature;
             $xpsStart=unitsClass::diskSector2SizeHex($hw->listDisks->disks[$this->disk]->partitions[$this->partitionName]->startSector);
@@ -231,7 +231,7 @@ class windowsXPOppClass  extends windowsOppClass {
             $stNs=str_split($hw->listDisks->disks[$this->disk]->serialNumber);
             foreach($stNs as  $i=> $ns ){
                 $i2=(($i%2)==0) ? $i+1 : $i-1 ;
-                $chs[$i2]=dechex(ord($ns));
+                $chs[$i2]=unitsClass::longDec2hex(ord($ns));
             }
             ksort($chs);
             $serialNumber=str_pad(implode('',$chs),40,'20');
