@@ -34,7 +34,7 @@ class fsDetectOppClass  extends FileSystemOppClass {
             }
         }
 
-        if( $this->partitionTypeId=='f') {
+        if( $this->partitionTypeId=='f' || $this->partitionTypeId=='5' ) {
             //extended partition
             return null;
         }
