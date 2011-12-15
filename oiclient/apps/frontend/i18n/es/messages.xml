@@ -364,7 +364,7 @@
       </trans-unit>
       <trans-unit id="91">
         <source>Name server</source>
-        <target>Servidor de nonmbres (DNS)</target>
+        <target>Servidor de nombres (DNS)</target>
       </trans-unit>
       <trans-unit id="92">
         <source>Change Host Name</source>
@@ -375,11 +375,11 @@
         <target>IP del servidor OpenIrudi</target>
       </trans-unit>
       <trans-unit id="94">
-        <source>Save pc config in server</source>
+        <source>Save pc config in the server</source>
         <target>Sincronizar con servidor</target>
       </trans-unit>
       <trans-unit id="95">
-        <source>Do you want save pc config in server?</source>
+        <source>Do you want save pc config in the server?</source>
         <target>&#xBF;Quieres guardar la configuraci&#xF3;n en el servidor?</target>
       </trans-unit>
       <trans-unit id="96">
@@ -463,15 +463,15 @@
         <target>Cadenas de identificaci&#xF3;n dispositivos PCI</target>
       </trans-unit>
       <trans-unit id="116">
-        <source>sucesfully</source>
+        <source>succesfully</source>
         <target>correcta</target>
       </trans-unit>
       <trans-unit id="117">
         <source>With ERRORS!!</source>
-        <target>con ERRORES!!</target>
+        <target>Con ERRORES!!</target>
       </trans-unit>
       <trans-unit id="118">
-        <source>Do you want show log?</source>
+        <source>Do you want to read the log?</source>
         <target>¿Visualizar el log?</target>
       </trans-unit>
       <trans-unit id="119">
@@ -491,7 +491,7 @@
         <target>oiClient en tu disco</target>
       </trans-unit>
       <trans-unit id="123">
-        <source>If you Install oiclient in local disk, you deploy faster and  you can boot oiclient from disk without PXE</source>
+        <source>If you Install oiClient in your hard disk, you will be able to deploy faster and you can boot oiClient from disk without PXE</source>
         <target>Instalar oiClient en tu disco duro permite acelerar las tareas de restauraci&#xF3;n y arrancar sin necesidad de CD/PXE</target>
       </trans-unit>
     </body>
