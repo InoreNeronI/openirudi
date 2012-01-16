@@ -206,7 +206,11 @@ class networkOppClass {
         $cmd = str_replace('$device', $newIpAddress['device'], $cmd);
         $cmd = str_replace('$ip', $newIpAddress['ip'], $cmd);
         $cmd = str_replace('$netmask', $newIpAddress['netmask'], $cmd);
+        
+        if(! isset($newIpAddress['gateway'])) $newIpAddress['gateway']= '';
         $cmd = str_replace('$gateway', $newIpAddress['gateway'], $cmd);
+        
+        if(! isset( $newIpAddress['dns_server'])) $newIpAddress['dns_server']='';
         $cmd = str_replace('$dns_server', $newIpAddress['dns_server'], $cmd);
 
         $r = executeClass::execute($cmd);

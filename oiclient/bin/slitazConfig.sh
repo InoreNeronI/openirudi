@@ -47,7 +47,7 @@ changeIp() {
         changeConfProperty 'GATEWAY' "\"${7}\"" "${NETWORK_CONF_FILE}"
         changeConfProperty 'DNS_SERVER' "\"${8}\"" "${NETWORK_CONF_FILE}"
     else
-        /sbin/udhcpc -b -T 1 -A 12 -i ${4} -p /var/run/udhcpc.${4}.pid
+        /sbin/udhcpc -b -T 3 -A 12 -i ${4} -p /var/run/udhcpc.${4}.pid
         changeConfProperty 'DHCP' '"yes"' ${NETWORK_CONF_FILE}
         changeConfProperty 'STATIC' '"no"' ${NETWORK_CONF_FILE}
         sleep 1
@@ -95,10 +95,10 @@ getNetDevices(){
         echo "ERROR: Wrong argument number: error $0 getNetDevices";
         exit 1
     fi
-    DEV=$(/sbin/ifconfig |grep eth| grep -v grep | tr -s " " |cut -d " " -f 1)
+    #DEV=$(/sbin/ifconfig |grep eth| grep -v grep | tr -s " " |cut -d " " -f 1)
 
 
-    DEV=$(cat /proc/net/dev |grep ':' |grep -v lo |cut -d ":" -f 1| tr -d " " )
+    DEV=$(cat /proc/net/dev |grep ':' |grep -v lo |cut -d ":" -f 1| tr -d " " |head -1 )
 
     if [ $? != 0 ]
     then
@@ -198,17 +198,21 @@ setInitParams(){
         esac
     done;
 
-    if [ -n "${IP}" ] && [ -n "${GATEWAY}" ] && [ -n "${DNS1}" ]
+    R=$(getNetDevices getNetDevices)
+    N=$(echo "${R}"|grep '!@@@' | cut -d ';' -f1|sed 's/!@@@//g' |tr -s "\n" |tr -d " " |head -1 )
+    if [ -z "${N}" ];
     then
-        R=$(getNetDevices getNetDevices)
-        N=$(echo "${R}"|grep '!@@@' | cut -d ';' -f1|sed 's/!@@@//g' |tr -s "\n" |tr -d " " |head -1 )
-        if [ -z "${N}" ];
+        echo "Error network devices";
+    else
+        if [ -n "${IP}" ] && [ -n "${GATEWAY}" ] && [ -n "${DNS1}" ]
         then
-            echo "Error network devices";
-            exit 1;
+            echo "static ${N} ${IP} ${NETMASK} ${GATEWAY} ${DNS1}" >> /tmp/init.log
+            changeIp changeIp "" "static" ${N} ${IP} ${NETMASK} ${GATEWAY} ${DNS1}
+        elif [ -z "$(ifconfig ${N} |grep addr: )" ]
+        then
+            echo "No ip found "
+            changeIp changeIp "" "dhcp" ${N} 
         fi
-        echo "static ${N} ${IP} ${NETMASK} ${GATEWAY} ${DNS1}" >> /tmp/init.log
-        changeIp changeIp "" "static" ${N} ${IP} ${NETMASK} ${GATEWAY} ${DNS1}
     fi
 
 

@@ -24,8 +24,6 @@ class my_loginActions extends sfActions {
         $this->getUser()->removeCredential('my_edit_all');
         $this->getUser()->setAuthenticated(false);
 
-
-
     }
 
     public function executeEqual(sfWebRequest $request) {

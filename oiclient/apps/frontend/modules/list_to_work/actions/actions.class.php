@@ -28,6 +28,17 @@ class list_to_workActions extends sfActions {
     
     public function executeIndex(sfWebRequest $request) {
         
+        if($this->hw->network->ipAddress['main']['ip'] == "" || $this->hw->network->ipAddress['main']['ip'] == null ){
+            $addr=$this->hw->network->ipAddress;
+            $this->getComputer(true);
+            ImageServerOppClass::is_validServer(true);
+            
+        }
+//        elseif($this->hw->network->hostname == 'unknown' ){
+//            if(ImageServerOppClass::is_validServer()){
+//                $this->hw->network->loadServerRegistry($this->hw->pcID,$this->listOisystems);
+//            }
+//        }
         
         if (ImageServerOppClass::is_validServer()) {
             $this->hw->network->loadServerRegistry($this->hw->pcID,$this->listOisystems);
