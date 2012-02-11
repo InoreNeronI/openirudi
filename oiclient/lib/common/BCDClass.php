@@ -5,12 +5,12 @@ class BCDClass {
     private $BCD=null;
     private $BCDPartition=null;
     private $registry;
-
     
     function __construct() {
         if($this->initialice() ){
             $this->readHive();
         }
+ 
     }
 
     function initialice(){
@@ -47,8 +47,12 @@ class BCDClass {
             $mountedAlready = true;
         }
 
-        if(!empty($mountPoint) && is_file($mountPoint.'/Boot/BCD') ) {
-            $this->registry=new windowsRegistryClass($mountPoint.'/Boot/BCD');
+        $BCDFile=manageFilesClass::caseInsensibleFileName($mountPoint.'/Boot/BCD');
+        
+        if(!empty($mountPoint) &&  $this->BCDFile != false ) {
+            
+            
+            $this->registry=new windowsRegistryClass($BCDFile);
             $this->BCD=$this->registry->getObjectsArray();
 
             if(count($this->BCD)<=1 ){
@@ -103,7 +107,9 @@ class BCDClass {
             $mountedAlready = true;
         }
 
-        if(!empty($mountPoint) && is_file($mountPoint.'/Boot/BCD') ) {
+        $BCDFile=manageFilesClass::caseInsensibleFileName($mountPoint.'/Boot/BCD');
+        
+        if(!empty($mountPoint) &&  $this->BCDFile != false ) {
 
             $key='Objects\\'.$obj.'\Elements\\'.$type;
             if(isset ($this->BCD['objects'][$obj]['elements'][$type]['element'])){

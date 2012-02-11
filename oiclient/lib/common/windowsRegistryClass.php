@@ -9,10 +9,10 @@ class windowsRegistryClass {
     private $prefixString;
     
     function  __construct($hiveFile, $prefixString='\\') {
-        $this->hiveFile=$hiveFile;
+        $this->hiveFile= manageFilesClass::caseInsensibleFileName($hiveFile);
         $this->prefixString=$prefixString;
     }
-
+    
     function prepareKey($key) {
         $key = str_replace("\\", "\\\\\\\\", $key);
         $key = str_replace(' ',"\\\\x20",$key);
