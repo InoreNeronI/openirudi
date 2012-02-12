@@ -30,7 +30,7 @@ class configActions extends sfActions {
 //       $this->hw->listDisks->disks['sda']->partitions['sda1']->fileSystem->changeHostName();
 //       $this->hw->listDisks->disks['sda']->partitions['sda1']->fileSystem->changeIPAddress();
        //$this->hw->listDisks->disks['sda']->partitions['sda1']->fileSystem->changeHostName();
-$this->hw->listDisks->disks['sda']->partitions['sda1']->fileSystem->postDeploy();
+$this->hw->listDisks->disks['hda']->partitions['hda1']->fileSystem->postDeploy();
 
 //$this->hw->listDisks->disks['sda']->partitions['sda2']->fileSystem->postDeploy();
 

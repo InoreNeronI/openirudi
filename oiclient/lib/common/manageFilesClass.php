@@ -41,17 +41,17 @@ class manageFilesClass {
     }
 
     static function caseInsensibleFileName($file) {
-
         $path_parts = pathinfo($file);
         $pathDirs = split('/', $path_parts['dirname']);
-        $rDir = "/";
+        $rDir = "";
         foreach ($pathDirs as $pdir) {
             if (empty($pdir))
                 continue;
             $p1 = glob("$rDir/*");
             $cont = false;
             foreach ($p1 as $k => $v) {
-                if (stristr("{$rDir}/{$pdir}", $v)) {
+                
+                if (strcasecmp("{$rDir}/{$pdir}", $v)==0) {
                     $rDir.='/' . basename($v);
                     $rDir = str_replace('//', '/', $rDir);
                     $cont = true;
