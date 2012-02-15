@@ -49,7 +49,7 @@ class BCDClass {
 
         $BCDFile=manageFilesClass::caseInsensibleFileName($mountPoint.'/Boot/BCD');
         
-        if(!empty($mountPoint) &&  $this->BCDFile != false ) {
+        if(!empty($mountPoint) &&  $BCDFile != false ) {
             
             
             $this->registry=new windowsRegistryClass($BCDFile);
@@ -109,7 +109,7 @@ class BCDClass {
 
         $BCDFile=manageFilesClass::caseInsensibleFileName($mountPoint.'/Boot/BCD');
         
-        if(!empty($mountPoint) &&  $this->BCDFile != false ) {
+        if(!empty($mountPoint) &&  $BCDFile != false ) {
 
             $key='Objects\\'.$obj.'\Elements\\'.$type;
             if(isset ($this->BCD['objects'][$obj]['elements'][$type]['element'])){
