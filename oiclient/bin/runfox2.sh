@@ -18,6 +18,15 @@ then
     done
 fi
 
+COUNT=0
+while [ -z "$(netstat -ln 2>/dev/null |grep LISTEN | grep ":80" )" ] && [ $COUNT -lt 10 ]
+do
+    COUNT=$(expr $COUNT + 1 )
+    echo "$(date) count $COUNT no  web server yet " >> $LOG
+    sleep 2
+done
+
+
 echo "ip: $(ifconfig | grep 'inet addr:' | awk '{print $2}'|grep -v 'addr:127' )" >> $LOG
 
 echo "$(date +"%H:%M:%S"):: Start ";
