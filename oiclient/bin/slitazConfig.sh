@@ -95,16 +95,18 @@ getNetDevices(){
         echo "ERROR: Wrong argument number: error $0 getNetDevices";
         exit 1
     fi
-    #DEV=$(/sbin/ifconfig |grep eth| grep -v grep | tr -s " " |cut -d " " -f 1)
-
-
-    DEV=$(cat /proc/net/dev |grep ':' |grep -v dummy | grep -v lo |cut -d ":" -f 1| tr -d " " |head -1 )
-
+    DEV=$( ip link | egrep -w '(UP|UNKNOWN)' |grep -v lo: |awk '{print $2}' |tr -d ':' |head -1 )
     if [ $? != 0 ]
     then
       echo "ERROR listing network devices";
       exit;
     fi
+
+    if [ -z "${DEV}" ]
+    then
+        DEV=$(cat /proc/net/dev |grep ':' | grep -v lo: |cut -d ":" -f 1| tr -d " " |head -1 )
+    fi
+
     echo "!@@@$DEV!@@@"
 
 }
