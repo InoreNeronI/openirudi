@@ -98,7 +98,7 @@ getNetDevices(){
     #DEV=$(/sbin/ifconfig |grep eth| grep -v grep | tr -s " " |cut -d " " -f 1)
 
 
-    DEV=$(cat /proc/net/dev |grep ':' |grep -v lo |cut -d ":" -f 1| tr -d " " |head -1 )
+    DEV=$(cat /proc/net/dev |grep ':' |grep -v dummy | grep -v lo |cut -d ":" -f 1| tr -d " " |head -1 )
 
     if [ $? != 0 ]
     then
