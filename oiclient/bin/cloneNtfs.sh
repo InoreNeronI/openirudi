@@ -17,7 +17,7 @@ resizeNtfsFs() {
     START=$(parted ${DISK} unit s print | tr -s ' ' |egrep "^ ${MINOR}" |awk '{print $2}' |tr -d 's' )
     OLD_END=$(parted ${DISK} unit s print | tr -s ' ' |egrep "^ ${MINOR}" |awk '{print $3}' |tr -d 's'  )
 
-    let "SIZEK=( ${3} - ${START}) * ${SECTORBYTES} / ${BLOCKSIZE} * ${BLOCKSIZE} / 1000"
+    let "SIZEK=( ${3} - ${START}) / 1000  * ${SECTORBYTES}"
 
     TYPE=$(parted ${DISK} print | tr -s ' ' |egrep "^ ${MINOR}" |cut -d ' ' -f 6 )
 
