@@ -94,7 +94,7 @@ class listOiSystemsOppClass {
             return false;
         }else{
             $p=explode('!@@@',$out);
-            if($p[1]=='null'){
+            if($p[1]=='null' || $p[1]=='nul' ){
                 return null;
             }else{
                 $ois=array_keys($this->oisystems);
