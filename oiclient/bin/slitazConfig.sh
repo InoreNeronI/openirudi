@@ -216,6 +216,7 @@ setInitParams(){
             changeIp changeIp "" "dhcp" ${N} 
         fi
     fi
+    echo "init ip address was set..." >> /tmp/init.log
 
 
     if [ -n "${USER}" ] && [ -n "${PASSWORD}" ]
@@ -231,7 +232,7 @@ setInitParams(){
 
     cp -a /etc/midori_config /etc/midori_config_w
 
-    echo "init params was set".
+    echo "init params was set..." >> /tmp/init.log
 
 }
 

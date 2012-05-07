@@ -10,12 +10,13 @@ fi
 if [ -n "$(ip link |grep eth0 |grep UP )" ]
 then
     COUNT=0
-    while [ -z "$(ifconfig | grep 'inet addr:' | awk '{print $2}'|grep -v 'addr:127' )" ] && [ $COUNT -lt 10 ]
+    while [ -z "$(ifconfig | grep 'inet addr:' | awk '{print $2}'|grep -v 'addr:127' )" ] && [ $COUNT -lt 20 ]
     do
         COUNT=$(expr $COUNT + 1 )
         echo "$(date) count $COUNT no ip yet " >> $LOG
         sleep 2
     done
+
 fi
 
 COUNT=0
