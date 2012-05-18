@@ -19,6 +19,10 @@ then
 
 fi
 
+R=$(sudo /var/www/openirudi/bin/oiRun.sh)
+echo "${R}" >> $LOG
+sleep 2
+
 COUNT=0
 while [ -z "$(netstat -ln 2>/dev/null |grep LISTEN | grep ":80" )" ] && [ $COUNT -lt 10 ]
 do
