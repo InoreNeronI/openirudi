@@ -169,6 +169,7 @@ class listDisksOppClass {
         $hw = systemOppClass::getComputer();
         $result=false;
         $bootablePartition = $this->bootablePartition();
+        
         if ($bootablePartition !== false && is_object($bootablePartition)) {
             exceptionHandlerClass::saveMessage("bootable " . $bootablePartition->partitionName . " os: " . $bootablePartition->fileSystem->os);
             $result=$hw->listDisks->disks[$bootablePartition->disk]->partitions[$bootablePartition->partitionName]->fileSystem->makeBootable();

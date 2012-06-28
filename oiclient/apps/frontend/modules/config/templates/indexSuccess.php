@@ -5,7 +5,7 @@
 <?php echo use_helper('Form'); ?>
 
 
-    <?php //echo '** '.link_to('[PROBA]', 'config/proba'); ?>
+    <?php echo '** '.link_to('[PROBA]', 'config/proba'); ?>
 
 <?php $version=$listOisystems->activeVersion(); ?>
 

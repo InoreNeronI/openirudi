@@ -16,6 +16,20 @@ class windows7SystemOppClass extends windowsOppClass {
         $bcd = new BCDClass();
         $bcd->makeBootable();
         
+        $hw=systemOppClass::getComputer();
+        $osList=$hw->listDisks->partitionsOS(false);
+        
+        if(in_array('windows7boot',$osList)){
+            
+            $partitionName=array_search('windows7boot',$osList);
+            $diskName=$hw->listDisks->diskOfpartition($partitionName);
+            
+            $fs=$hw->listDisks->disks[$diskName]->partitions[$partitionName]->fileSystem;
+            $fs->changeHostName();
+            $fs->changeIPAddress();
+   
+        }
+        
         
     }
 

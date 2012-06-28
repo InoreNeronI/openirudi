@@ -10,12 +10,21 @@ class windows7BootOppClass  extends windowsOppClass {
     }
 
     function postDeploy(){
+        exceptionHandlerClass::saveMessage("windows7 boot postDeploy......");
+        
+        if(in_array('windows7system',$osList)){
+            $partitionName=array_search('windows7system',$osList);
+            $diskName=$hw->listDisks->diskOfpartition($partitionName);
+            
+            $fs=$hw->listDisks->disks[$diskName]->partitions[$partitionName]->fileSystem;
+            $fs->postDeploy();
 
-        $bcd = new BCDClass();
-        $bcd->makeBootable();
-
-        $this->changeHostName();
-        $this->changeIPAddress();
+        }else{
+//        $bcd = new BCDClass();
+//        $bcd->makeBootable();
+            $this->changeHostName();
+            $this->changeIPAddress();
+        }
         
     }
 
@@ -86,8 +95,8 @@ class windows7BootOppClass  extends windowsOppClass {
             $netPtree=$registry->getObjectsArray('ControlSet001\services');
 
             if(!isset($netPtree['hkey_local_machine']['system']['controlset001']['services'][$netkey]['parameters']['tcpip'])){
-                exceptionHandlerClass::saveError("I not found tcp/ip parameters");
-                exceptionHandlerClass::saveError("We not found netkey $netkey in controlset001\\services");
+                exceptionHandlerClass::saveMessage("I not found tcp/ip parameters");
+                exceptionHandlerClass::saveMessage("We not found netkey $netkey in controlset001\\services");
                 return;
             }
 

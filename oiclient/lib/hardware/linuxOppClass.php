@@ -101,6 +101,7 @@ class linuxOppClass extends extOppClass {
         if (!empty($mountPoint)) {
             exceptionHandlerClass::saveMessage("Reinstall GRUB to standalone");
             $cmd = str_replace('$mountPoint', $mountPoint, sfConfig::get('app_oipartition_grubStandalone'));
+    exceptionHandlerClass::saveMessage("grub install:  $cmd");
             $re = executeClass::execute($cmd);
                         
             if ($re['return'] === false ) {

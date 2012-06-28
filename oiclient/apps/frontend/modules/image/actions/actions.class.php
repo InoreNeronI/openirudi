@@ -87,6 +87,7 @@ font-size: 12px;
     function executeRedetect(){
         $this->getListOisystems(true);
         $this->getComputer(true);
+        exit;
     }
     
     function executeReinstallOiSystem2($request) {

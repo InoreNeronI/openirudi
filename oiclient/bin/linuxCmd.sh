@@ -119,13 +119,13 @@ standalone1_97(){
             fi
             GRUB_DISK=$(expr $GRUB_DISK + 1 )
     done
-
+echo "----1-------"
     mount -o remount,dev ${2}
     mount -t proc none /${2}/proc
     mount -o bind /sys /${2}/sys
     mount -o bind /dev ${2}/dev
     mount -o bind /dev/pts ${2}/dev/pts
-    
+echo "----2-------"    
     
     INSTALL=0
     MKCONFIG=$(chroot ${2} which grub-mkconfig)
@@ -145,13 +145,17 @@ standalone1_97(){
 
     if [ ${INSTALL}=1 ]
     then
+echo "----3-------"
         echo "chroot ${2} $(which grub-install)  ${LINUXDISK} "
         chroot ${2} $(which grub-install)  /dev/${LINUXDISK}
-       
+echo "----4-------"
     else
         echo "ERROR we can't fix MBR and boot menu"
         exit 1
     fi
+
+echo "----5-------" 
+
     umount ${2}/sys
     umount ${2}/dev/pts
     umount ${2}/proc
